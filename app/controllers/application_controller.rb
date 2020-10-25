@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
 
     # Override devise's after_sign_in_path_for
     def after_sign_in_path_for(resource)
-        dashboard_index_path
+        if resource.has_role? :admin
+            admin_authenticated_root_path
+        else
+            authenticated_root_path
+        end
     end
 end

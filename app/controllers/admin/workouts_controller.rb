@@ -1,10 +1,11 @@
 class Admin::WorkoutsController < Admin::ApplicationController
+  before_action :set_workout_user
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
 
   # GET /workouts
   # GET /workouts.json
   def index
-    @workouts = Workout.all
+    @workouts = @user.workouts
   end
 
   # GET /workouts/1
@@ -14,7 +15,7 @@ class Admin::WorkoutsController < Admin::ApplicationController
 
   # GET /workouts/new
   def new
-    @workout = Workout.new
+    @workout = Workout.new(user: @user)
   end
 
   # GET /workouts/1/edit
@@ -25,7 +26,6 @@ class Admin::WorkoutsController < Admin::ApplicationController
   # POST /workouts.json
   def create
     @workout = Workout.new(workout_params)
-
     respond_to do |format|
       if @workout.save
         format.html { redirect_to @workout, notice: 'Workout was successfully created.' }
@@ -63,6 +63,10 @@ class Admin::WorkoutsController < Admin::ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_workout_user
+      @user = User.find(params[:user_id])
+    end
+
     def set_workout
       @workout = Workout.find(params[:id])
     end

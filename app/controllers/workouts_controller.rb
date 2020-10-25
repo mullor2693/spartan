@@ -1,10 +1,10 @@
 class WorkoutsController < ApplicationController
+  before_action :set_user_workouts
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
 
   # GET /workouts
   # GET /workouts.json
   def index
-    @workouts = Workout.all
   end
 
   # GET /workouts/1
@@ -14,7 +14,7 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts/new
   def new
-    @workout = Workout.new
+    @workout = Workout.new(user: current_user)
   end
 
   # GET /workouts/1/edit
@@ -62,9 +62,16 @@ class WorkoutsController < ApplicationController
   end
 
   private
+
+    def set_user_workouts
+      @workouts = current_user.workouts 
+      redirect_to authenticated_root_path, alert: 'Exercise not found on the system.' if @workouts.nil?
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_workout
-      @workout = Workout.find(params[:id])
+      @workout = Workout.find_by(id: params[:id])
+      redirect_to exercises_url, alert: 'Exercise not found on the system.' if @workout.blank? || !@workouts.include?(@workout)
     end
 
     # Only allow a list of trusted parameters through.

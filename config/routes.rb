@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         resources :workouts
       end
 
+      root 'dashboard#index', as: :authenticated_root
     end
 
     resources :exercises, only: [:index, :show]

@@ -1,0 +1,37 @@
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
+  style="background:url(<%= image_path('big/auth-bg.jpg')%>) no-repeat center center;">
+  <div class="auth-box row">
+    <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image:url(<%= image_path('big/3.jpg')%>);">
+    </div>
+    <div class="col-lg-5 col-md-7 bg-white">
+      <div class="p-3">
+        <div class="text-center">
+          <%= image_tag "big/icon.png", alt:"wrapkit" %>
+        </div>
+        <h2 class="mt-3 text-center">¿Olvidaste tu contraseña?</h2>
+        <p class="text-center">Introduce tu correo electronico y te enviaremos las instrucciones para recuperarla.</p>
+
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'mt-4' }) do |f| %>
+          
+          <div class="row">
+
+            <div class="col-lg-12">
+              <div class="form-group">
+                <%= f.email_field :email, {class: "form-control", placeholder: "Enter your email"} %>
+              </div>
+            </div>
+            
+            <div class="col-lg-12 text-center">
+              <%= f.submit "Enviadme Intrucciones", class: "btn btn-block btn-dark" %>
+            </div>
+    
+            <%= render "devise/shared/links" %>
+
+          </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

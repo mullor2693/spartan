@@ -64,7 +64,8 @@ class ExercisesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_exercise
-      @exercise = Exercise.find(params[:id])
+      @exercise = Exercise.find_by(id: params[:id])
+      redirect_to exercises_url, alert: 'Exercise not found on the system.' if @exercise.blank?
     end
 
     # Only allow a list of trusted parameters through.

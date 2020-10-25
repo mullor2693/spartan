@@ -10,10 +10,41 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div>
+
+    <!-- Main wrapper -->
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+       
+        <%= render partial: "shared/topbar_header" %>
+        <%= render partial: "shared/left_sidebar" %>
+        
+        <div class="page-wrapper">
+            <%#= render partial: "shared/breadcrumb" %>
+
+            <div class="container-fluid">
+                <div class="row">
+                   <%= yield %>
+                </div>
+            </div>
+            
+            <%#= render partial: "shared/footer" %>
+        </div>
+        
+    </div>
+    <!-- End Wrapper -->
+
   </body>
 </html>
 
+
+    
 <% unless flash.empty? %>
    <script type="text/javascript">
       <% flash.each do |f| %>
@@ -22,3 +53,4 @@
    <% end %>
    </script>
 <% end %>
+
