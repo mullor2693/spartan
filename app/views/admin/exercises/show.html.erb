@@ -8,5 +8,9 @@
   <%= @exercise.description %>
 </p>
 
+<% @exercise.examples.each do |example| %>
+  <%= image_tag example.variant(resize: "40x40!") %>
+<% end %>
+
 <%= link_to 'Edit', edit_admin_exercise_path(@exercise) %> |
 <%= link_to 'Back', admin_exercises_path %>
