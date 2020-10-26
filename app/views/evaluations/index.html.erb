@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Evaluations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Imc</th>
+      <th>Fat rate</th>
+      <th>Fat weight</th>
+      <th>Slim weight</th>
+      <th>Residual weight</th>
+      <th>Muscle weight</th>
+      <th>Triceps skinfold</th>
+      <th>Subscapular skinfold</th>
+      <th>Bicipital skinfold</th>
+      <th>Axilliary skinfold</th>
+      <th>Suprailiac skinfold</th>
+      <th>Thoracic skinfold</th>
+      <th>Abdominal skinfold</th>
+      <th>Medialcalf skinfold</th>
+      <th>Fist bone diametre</th>
+      <th>Femur bone diametre</th>
+      <th>Evaluation date</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @evaluations.each do |evaluation| %>
+      <tr>
+        <td><%= evaluation.height %></td>
+        <td><%= evaluation.weight %></td>
+        <td><%= evaluation.imc %></td>
+        <td><%= evaluation.fat_rate %></td>
+        <td><%= evaluation.fat_weight %></td>
+        <td><%= evaluation.slim_weight %></td>
+        <td><%= evaluation.residual_weight %></td>
+        <td><%= evaluation.muscle_weight %></td>
+        <td><%= evaluation.triceps_skinfold %></td>
+        <td><%= evaluation.subscapular_skinfold %></td>
+        <td><%= evaluation.bicipital_skinfold %></td>
+        <td><%= evaluation.axilliary_skinfold %></td>
+        <td><%= evaluation.suprailiac_skinfold %></td>
+        <td><%= evaluation.thoracic_skinfold %></td>
+        <td><%= evaluation.abdominal_skinfold %></td>
+        <td><%= evaluation.medialcalf_skinfold %></td>
+        <td><%= evaluation.fist_bone_diametre %></td>
+        <td><%= evaluation.femur_bone_diametre %></td>
+        <td><%= evaluation.evaluation_date %></td>
+        <td><%= evaluation.user_id %></td>
+        <td><%= link_to 'Show', evaluation %></td>
+        <td><%= link_to 'Edit', edit_evaluation_path(evaluation) %></td>
+        <td><%= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Evaluation', new_evaluation_path %>

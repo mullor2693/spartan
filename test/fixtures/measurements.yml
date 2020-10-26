@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shoulder: 9.99
+  pecs: 9.99
+  right_arm: 9.99
+  left_arm: 9.99
+  right_forearm: 9.99
+  left_forearm: 9.99
+  waist: 9.99
+  hip: 9.99
+  right_leg: 9.99
+  left_leg: 9.99
+  right_twin: 9.99
+  left_twin: 9.99
+  user: one
+
+two:
+  shoulder: 9.99
+  pecs: 9.99
+  right_arm: 9.99
+  left_arm: 9.99
+  right_forearm: 9.99
+  left_forearm: 9.99
+  waist: 9.99
+  hip: 9.99
+  right_leg: 9.99
+  left_leg: 9.99
+  right_twin: 9.99
+  left_twin: 9.99
+  user: two

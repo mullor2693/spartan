@@ -32,6 +32,9 @@
   <%= @user.phone %>
 </p>
 
+<%= link_to 'Evaluations',  admin_user_evaluations_path(@user) %> |
+<%= link_to 'Measurements', admin_user_measurements_path(@user) %> |
+<%= link_to 'Weights',  admin_user_weights_path(@user) %> |
 <%= link_to 'Workouts', admin_user_workouts_path(@user) %> |
 
 <%= link_to 'Edit', edit_admin_user_path(@user) %> 

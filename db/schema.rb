@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_121009) do
+ActiveRecord::Schema.define(version: 2020_10_26_230730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,32 @@ ActiveRecord::Schema.define(version: 2020_10_26_121009) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "evaluations", force: :cascade do |t|
+    t.decimal "height"
+    t.decimal "weight"
+    t.decimal "imc"
+    t.decimal "fat_rate"
+    t.decimal "fat_weight"
+    t.decimal "slim_weight"
+    t.decimal "residual_weight"
+    t.decimal "muscle_weight"
+    t.decimal "triceps_skinfold"
+    t.decimal "subscapular_skinfold"
+    t.decimal "bicipital_skinfold"
+    t.decimal "axilliary_skinfold"
+    t.decimal "suprailiac_skinfold"
+    t.decimal "thoracic_skinfold"
+    t.decimal "abdominal_skinfold"
+    t.decimal "medialcalf_skinfold"
+    t.decimal "fist_bone_diametre"
+    t.decimal "femur_bone_diametre"
+    t.datetime "evaluation_date"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_evaluations_on_user_id"
   end
 
   create_table "exercise_workouts", force: :cascade do |t|
@@ -71,6 +97,25 @@ ActiveRecord::Schema.define(version: 2020_10_26_121009) do
     t.index ["workout_id"], name: "index_exericise_workouts_on_workout_id"
   end
 
+  create_table "measurements", force: :cascade do |t|
+    t.decimal "shoulder"
+    t.decimal "pecs"
+    t.decimal "right_arm"
+    t.decimal "left_arm"
+    t.decimal "right_forearm"
+    t.decimal "left_forearm"
+    t.decimal "waist"
+    t.decimal "hip"
+    t.decimal "right_leg"
+    t.decimal "left_leg"
+    t.decimal "right_twin"
+    t.decimal "left_twin"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_measurements_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -100,6 +145,7 @@ ActiveRecord::Schema.define(version: 2020_10_26_121009) do
     t.string "dni"
     t.string "address"
     t.integer "phone"
+    t.float "desired_weight"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -110,6 +156,16 @@ ActiveRecord::Schema.define(version: 2020_10_26_121009) do
     t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
+  end
+
+  create_table "weights", force: :cascade do |t|
+    t.float "score"
+    t.datetime "date"
+    t.text "notes"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_weights_on_user_id"
   end
 
   create_table "workouts", force: :cascade do |t|
@@ -123,9 +179,12 @@ ActiveRecord::Schema.define(version: 2020_10_26_121009) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "evaluations", "users"
   add_foreign_key "exercise_workouts", "exercises"
   add_foreign_key "exercise_workouts", "workouts"
   add_foreign_key "exericise_workouts", "exercises"
   add_foreign_key "exericise_workouts", "workouts"
+  add_foreign_key "measurements", "users"
+  add_foreign_key "weights", "users"
   add_foreign_key "workouts", "users"
 end

@@ -1,0 +1,45 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  height: 9.99
+  weight: 9.99
+  imc: 9.99
+  fat_rate: 9.99
+  fat_weight: 9.99
+  slim_weight: 9.99
+  residual_weight: 9.99
+  muscle_weight: 9.99
+  triceps_skinfold: 9.99
+  subscapular_skinfold: 9.99
+  bicipital_skinfold: 9.99
+  axilliary_skinfold: 9.99
+  suprailiac_skinfold: 9.99
+  thoracic_skinfold: 9.99
+  abdominal_skinfold: 9.99
+  medialcalf_skinfold: 9.99
+  fist_bone_diametre: 9.99
+  femur_bone_diametre: 9.99
+  evaluation_date: 2020-10-27 00:05:58
+  user: one
+
+two:
+  height: 9.99
+  weight: 9.99
+  imc: 9.99
+  fat_rate: 9.99
+  fat_weight: 9.99
+  slim_weight: 9.99
+  residual_weight: 9.99
+  muscle_weight: 9.99
+  triceps_skinfold: 9.99
+  subscapular_skinfold: 9.99
+  bicipital_skinfold: 9.99
+  axilliary_skinfold: 9.99
+  suprailiac_skinfold: 9.99
+  thoracic_skinfold: 9.99
+  abdominal_skinfold: 9.99
+  medialcalf_skinfold: 9.99
+  fist_bone_diametre: 9.99
+  femur_bone_diametre: 9.99
+  evaluation_date: 2020-10-27 00:05:58
+  user: two

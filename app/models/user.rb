@@ -6,6 +6,9 @@ class User < ApplicationRecord
          :recoverable, :validatable, :trackable
 
   has_many :workouts
+  has_many :weights
+  has_many :measurements
+  has_many :evaluations
   
   def nickname
     full_name.present? ? full_name : email

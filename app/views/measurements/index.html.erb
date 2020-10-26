@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Measurements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Shoulder</th>
+      <th>Pecs</th>
+      <th>Right arm</th>
+      <th>Left arm</th>
+      <th>Right forearm</th>
+      <th>Left forearm</th>
+      <th>Waist</th>
+      <th>Hip</th>
+      <th>Right leg</th>
+      <th>Left leg</th>
+      <th>Right twin</th>
+      <th>Left twin</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @measurements.each do |measurement| %>
+      <tr>
+        <td><%= measurement.shoulder %></td>
+        <td><%= measurement.pecs %></td>
+        <td><%= measurement.right_arm %></td>
+        <td><%= measurement.left_arm %></td>
+        <td><%= measurement.right_forearm %></td>
+        <td><%= measurement.left_forearm %></td>
+        <td><%= measurement.waist %></td>
+        <td><%= measurement.hip %></td>
+        <td><%= measurement.right_leg %></td>
+        <td><%= measurement.left_leg %></td>
+        <td><%= measurement.right_twin %></td>
+        <td><%= measurement.left_twin %></td>
+        <td><%= measurement.user_id %></td>
+        <td><%= link_to 'Show', measurement %></td>
+        <td><%= link_to 'Edit', edit_measurement_path(measurement) %></td>
+        <td><%= link_to 'Destroy', measurement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Measurement', new_measurement_path %>
