@@ -16,7 +16,7 @@
       <tr>
         <td><%= workout.name %></td>
         <td><%= workout.description %></td>
-        <td><%= workout.training_days %></td>
+        <td><%= workout.selected_training_days %></td>
         <td><%= workout.user_id %></td>
         <td><%= link_to 'Show', admin_user_workout_path(workout.user, workout) %></td>
         <td><%= link_to 'Edit', edit_admin_user_workout_path(workout.user, workout) %></td>

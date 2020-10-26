@@ -1,3 +1,7 @@
+<h1>Workout</h1>
+
+<%= link_to 'Back', workouts_path %>
+
 <p>
   <strong>Name:</strong>
   <%= @workout.name %>
@@ -10,13 +14,9 @@
 
 <p>
   <strong>Training days:</strong>
-  <%= @workout.training_days %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @workout.user_id %>
+  <%= @workout.selected_training_days %>
 </p>
 
 <%= link_to 'Edit', edit_workout_path(@workout) %> |
-<%= link_to 'Back', workouts_path %>
+<%= link_to 'Exercises', workout_exercises_path(@workout) %> |
+<%= link_to 'Series', workout_exercise_workouts_path(@workout) %>

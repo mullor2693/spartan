@@ -8,13 +8,39 @@ Rails.application.routes.draw do
 
       resources :exercises
       resources :users do
-        resources :workouts
+
+        scope module: 'users' do
+
+          resources :workouts do
+
+            scope module: 'workouts' do
+
+              resources :exercises
+              resources :exercise_workouts
+
+            end
+
+          end
+
+        end
+
       end
+
+      root 'dashboard#index', as: :authenticated_root
 
     end
 
     resources :exercises, only: [:index, :show]
-    resources :workouts
+    resources :workouts do
+
+      scope module: 'workouts' do
+
+        resources :exercises, only: [:index, :show]
+        resources :exercise_workouts
+
+      end
+      
+    end
 
     
     root 'dashboard#index', as: :authenticated_root

@@ -1,10 +1,10 @@
 class WorkoutsController < ApplicationController
+  before_action :set_user_workouts
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
 
   # GET /workouts
   # GET /workouts.json
   def index
-    @workouts = Workout.all
   end
 
   # GET /workouts/1
@@ -14,7 +14,7 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts/new
   def new
-    @workout = Workout.new
+    @workout = @workouts.new
   end
 
   # GET /workouts/1/edit
@@ -24,8 +24,7 @@ class WorkoutsController < ApplicationController
   # POST /workouts
   # POST /workouts.json
   def create
-    @workout = Workout.new(workout_params)
-
+    @workout = @workouts.new(workout_params)
     respond_to do |format|
       if @workout.save
         format.html { redirect_to @workout, notice: 'Workout was successfully created.' }
@@ -63,12 +62,17 @@ class WorkoutsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_user_workouts
+      @workouts = @current_user.workouts
+    end
+
     def set_workout
-      @workout = Workout.find(params[:id])
+      @workout = @workouts.find_by(id: params[:id])
+      redirect_to workouts_path, alert: 'Exercise not found on the workout.' if @workout.blank?
     end
 
     # Only allow a list of trusted parameters through.
     def workout_params
-      params.require(:workout).permit(:name, :description, :training_days, :user_id)
+      params.require(:workout).permit(:name, :description, :training_days)
     end
 end

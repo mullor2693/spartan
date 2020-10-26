@@ -25,11 +25,10 @@ class Admin::UsersController < Admin::ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to [:admin, @user], notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: [:admin, @user] }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -42,8 +41,8 @@ class Admin::UsersController < Admin::ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        format.html { redirect_to [:admin, @user], notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: [:admin, @user] }
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -56,7 +55,7 @@ class Admin::UsersController < Admin::ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to admin_users_path, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,11 +64,11 @@ class Admin::UsersController < Admin::ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find_by(id: params[:id])
-      redirect_to admin_users_url, alert: 'User not found on the system.' if @user.blank?
+      redirect_to admin_users_path, alert: 'User not found on the system.' if @user.blank?
     end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email)
+      params.require(:user).permit(:email, :name, :surname, :birth_date, :dni, :address, :phone)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_25_023214) do
+ActiveRecord::Schema.define(version: 2020_10_26_121009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,39 @@ ActiveRecord::Schema.define(version: 2020_10_25_023214) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "exercise_workouts", force: :cascade do |t|
+    t.bigint "exercise_id", null: false
+    t.bigint "workout_id", null: false
+    t.integer "serie_type"
+    t.integer "serie_reps"
+    t.integer "serie_rest"
+    t.text "notes"
+    t.json "series", default: {"0"=>{"reps"=>0, "weight"=>0, "time"=>0}, "1"=>{"reps"=>0, "weight"=>0, "time"=>0}, "2"=>{"reps"=>0, "weight"=>0, "time"=>0}, "3"=>{"reps"=>0, "weight"=>0, "time"=>0}, "4"=>{"reps"=>0, "weight"=>0, "time"=>0}}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercise_id"], name: "index_exercise_workouts_on_exercise_id"
+    t.index ["workout_id"], name: "index_exercise_workouts_on_workout_id"
+  end
+
   create_table "exercises", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "exericise_workouts", force: :cascade do |t|
+    t.bigint "exercise_id", null: false
+    t.bigint "workout_id", null: false
+    t.string "serie_type"
+    t.integer "serie_reps"
+    t.integer "serie_rest"
+    t.text "notes"
+    t.json "series", default: {"0"=>{"reps"=>0, "weight"=>0, "time"=>0}, "1"=>{"reps"=>0, "weight"=>0, "time"=>0}, "2"=>{"reps"=>0, "weight"=>0, "time"=>0}, "3"=>{"reps"=>0, "weight"=>0, "time"=>0}, "4"=>{"reps"=>0, "weight"=>0, "time"=>0}}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercise_id"], name: "index_exericise_workouts_on_exercise_id"
+    t.index ["workout_id"], name: "index_exericise_workouts_on_workout_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -66,6 +94,12 @@ ActiveRecord::Schema.define(version: 2020_10_25_023214) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "surname"
+    t.datetime "birth_date"
+    t.string "dni"
+    t.string "address"
+    t.integer "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -89,5 +123,9 @@ ActiveRecord::Schema.define(version: 2020_10_25_023214) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "exercise_workouts", "exercises"
+  add_foreign_key "exercise_workouts", "workouts"
+  add_foreign_key "exericise_workouts", "exercises"
+  add_foreign_key "exericise_workouts", "workouts"
   add_foreign_key "workouts", "users"
 end
