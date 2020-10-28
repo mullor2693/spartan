@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_230730) do
+ActiveRecord::Schema.define(version: 2020_10_28_110225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 2020_10_26_230730) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "diets", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "weekdays", default: [], array: true
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_diets_on_user_id"
   end
 
   create_table "evaluations", force: :cascade do |t|
@@ -83,18 +93,32 @@ ActiveRecord::Schema.define(version: 2020_10_26_230730) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "exericise_workouts", force: :cascade do |t|
-    t.bigint "exercise_id", null: false
-    t.bigint "workout_id", null: false
-    t.string "serie_type"
-    t.integer "serie_reps"
-    t.integer "serie_rest"
-    t.text "notes"
-    t.json "series", default: {"0"=>{"reps"=>0, "weight"=>0, "time"=>0}, "1"=>{"reps"=>0, "weight"=>0, "time"=>0}, "2"=>{"reps"=>0, "weight"=>0, "time"=>0}, "3"=>{"reps"=>0, "weight"=>0, "time"=>0}, "4"=>{"reps"=>0, "weight"=>0, "time"=>0}}
+  create_table "foods", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.json "components"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["exercise_id"], name: "index_exericise_workouts_on_exercise_id"
-    t.index ["workout_id"], name: "index_exericise_workouts_on_workout_id"
+  end
+
+  create_table "meal_foods", force: :cascade do |t|
+    t.bigint "meal_id", null: false
+    t.bigint "food_id", null: false
+    t.decimal "quantity"
+    t.string "unit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_meal_foods_on_food_id"
+    t.index ["meal_id"], name: "index_meal_foods_on_meal_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.string "name"
+    t.bigint "diet_id", null: false
+    t.integer "daytime"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["diet_id"], name: "index_meals_on_diet_id"
   end
 
   create_table "measurements", force: :cascade do |t|
@@ -171,7 +195,7 @@ ActiveRecord::Schema.define(version: 2020_10_26_230730) do
   create_table "workouts", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.json "training_days", default: {"L"=>false, "M"=>false, "X"=>false, "J"=>false, "V"=>false, "S"=>false, "D"=>false}
+    t.string "weekdays", default: [], array: true
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -179,11 +203,13 @@ ActiveRecord::Schema.define(version: 2020_10_26_230730) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "diets", "users"
   add_foreign_key "evaluations", "users"
   add_foreign_key "exercise_workouts", "exercises"
   add_foreign_key "exercise_workouts", "workouts"
-  add_foreign_key "exericise_workouts", "exercises"
-  add_foreign_key "exericise_workouts", "workouts"
+  add_foreign_key "meal_foods", "foods"
+  add_foreign_key "meal_foods", "meals"
+  add_foreign_key "meals", "diets"
   add_foreign_key "measurements", "users"
   add_foreign_key "weights", "users"
   add_foreign_key "workouts", "users"

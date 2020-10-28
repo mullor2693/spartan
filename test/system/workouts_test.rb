@@ -16,7 +16,7 @@ class WorkoutsTest < ApplicationSystemTestCase
 
     fill_in "Description", with: @workout.description
     fill_in "Name", with: @workout.name
-    fill_in "Training days", with: @workout.training_days
+    fill_in "Training days", with: @workout.weekdays
     fill_in "User", with: @workout.user_id
     click_on "Create Workout"
 
@@ -30,7 +30,7 @@ class WorkoutsTest < ApplicationSystemTestCase
 
     fill_in "Description", with: @workout.description
     fill_in "Name", with: @workout.name
-    fill_in "Training days", with: @workout.training_days
+    fill_in "Training days", with: @workout.weekdays
     fill_in "User", with: @workout.user_id
     click_on "Update Workout"
 

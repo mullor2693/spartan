@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1>Evaluation</h1>
+
+<%= link_to 'Back', evaluations_path %>
 
 <p>
   <strong>Height:</strong>
@@ -93,11 +95,6 @@
 <p>
   <strong>Evaluation date:</strong>
   <%= @evaluation.evaluation_date %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @evaluation.user_id %>
 </p>
 
 <%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |

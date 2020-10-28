@@ -21,12 +21,10 @@
     <%= form.text_area :description %>
   </div>
   
-  <%= form.label :training_days %>
-  <% Workout::TRAINING_DAYS.each do |key| %>
-    <%= form.label "#{key}" %>
-    <%= form.check_box "training_days_#{key}", { name: "workout[training_days][#{key}]", checked: workout.training_days.include?("#{key}") }, true, false  %> <br />
-  
-  <% end %>
+  <div class="field">
+    <%= form.label :weekdays %>
+    <%= select(workout.model_name.singular, :weekdays, Weekable::WEEKDAYS, {}, { multiple: true }) %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

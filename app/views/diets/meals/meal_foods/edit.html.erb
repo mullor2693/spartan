@@ -1,0 +1,6 @@
+<h1>Editing Meal Food</h1>
+
+<%= render 'form', meal_food: @meal_food %>
+
+<%= link_to 'Edit', diet_meal_meal_food_path(@diet, @meal, @meal_food) %> |
+<%= link_to 'Back', diet_meal_meal_foods_path(@diet, @meal) %>

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :weights
   has_many :measurements
   has_many :evaluations
+  has_many :diets
   
   def nickname
     full_name.present? ? full_name : email

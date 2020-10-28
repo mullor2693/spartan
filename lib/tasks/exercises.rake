@@ -203,7 +203,7 @@ namespace :exercises do
 
         },
         {
-            name: "Press con Mancuernas",
+            name: "Press con Mancuernas doble",
             description: "Ponte en posición sentada en el banco, sujeta las mancuernas y deja que reposen en los muslos. Al echarte hacia atrás para tumbarte en el banco, utiliza los muslos para ayudarte a mover las mancuernas hasta el pecho. Endereza los brazos sobre el pecho (manteniendo una ligera flexión en el codo), con las palmas mirando hacia fuera. Mantén las plantas de los pies en el suelo y la espalda en posición neutral (nada más que un pequeño arco). Baja las mancuernas doblando los codos hacia los lados. Sigue hasta que los codos estén justo por debajo de los hombros. Entonces sube las mancuernas otra vez, juntándolas arriba (sin que se toquen), y ligeramente inclinadas hacia dentro. Mantén los codos ligeramente flexionados, no dejes que se ”bloqueen”. Repite hasta que termines la serie. Para levantarte, sujeta las mancuernas junto al pecho, echa las piernas hacia arriba y hacia adelante, para darle al cuerpo el impulso necesario para sentarte.",
             codes: ["dumbbellpresses1", "dumbbellpresses2", "dumbbellpresses3"],
 

@@ -74,6 +74,6 @@ class Admin::Users::WorkoutsController < Admin::Users::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def workout_params
-      params.require(:workout).permit(:name, :description, training_days: {})
+      params.require(:workout).permit(:name, :description, weekdays:[])
     end
 end

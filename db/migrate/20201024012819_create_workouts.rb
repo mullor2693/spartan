@@ -3,7 +3,7 @@ class CreateWorkouts < ActiveRecord::Migration[6.0]
     create_table :workouts do |t|
       t.string :name
       t.text :description
-      t.json :training_days, default: {L: false, M: false, X: false, J: false, V: false, S: false, D: false}
+      t.string :weekdays, array: true, default: []
       t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps

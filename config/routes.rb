@@ -9,6 +9,16 @@ Rails.application.routes.draw do
       resources :exercises
       resources :users do
         scope module: 'users' do
+          resources :diets do
+            scope module: 'diets' do
+              resources :meals do
+                scope module: 'meals' do
+                  resources :meal_foods
+                end
+              end
+            end
+          end
+          resources :foods
           resources :measurements
           resources :evaluations
           resources :weights
@@ -24,6 +34,16 @@ Rails.application.routes.draw do
 
     end
 
+    resources :diets do
+      scope module: 'diets' do
+        resources :meals do
+          scope module: 'meals' do
+            resources :meal_foods
+          end
+        end
+      end
+    end
+    resources :foods, only: [:index, :show]
     resources :measurements
     resources :evaluations
     resources :weights
@@ -37,6 +57,9 @@ Rails.application.routes.draw do
     root 'dashboard#index', as: :authenticated_root
 
   end
-  root to: "home#index"
   
+  root to: "home#index"
+
+  match "*path", to: "home#none", via: :all
+
 end

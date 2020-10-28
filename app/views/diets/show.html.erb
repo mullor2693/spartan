@@ -1,0 +1,21 @@
+<h1>Diet</h1>
+
+<%= link_to 'Back', diets_path %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @diet.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @diet.description %>
+</p>
+
+<p>
+  <strong>Weekdays:</strong>
+  <%= @diet.weekdays_sentence %>
+</p>
+
+<%= link_to 'Edit', edit_diet_path(@diet) %> |
+<%= link_to 'Meals', diet_meals_path(@diet) %> |

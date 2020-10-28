@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @diet.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @diet.description %>
+</p>
+
+<p>
+  <strong>Weekdays:</strong>
+  <%= @diet.weekdays_sentence %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @diet.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_diet_path(@diet) %> |
+<%= link_to 'Back', diets_path %>

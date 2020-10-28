@@ -39,6 +39,7 @@ class WorkoutsController < ApplicationController
   # PATCH/PUT /workouts/1
   # PATCH/PUT /workouts/1.json
   def update
+    debugger
     respond_to do |format|
       if @workout.update(workout_params)
         format.html { redirect_to @workout, notice: 'Workout was successfully updated.' }
@@ -73,6 +74,6 @@ class WorkoutsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def workout_params
-      params.require(:workout).permit(:name, :description, :training_days)
+      params.require(:workout).permit(:name, :description, weekdays: [])
     end
 end

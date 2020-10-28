@@ -22,8 +22,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :training_days %>
-    <%= form.text_field :training_days %>
+    <%= form.label :weekdays %>
+    <%= select(workout.model_name.singular, :weekdays, Weekable::WEEKDAYS, {}, { multiple: true }) %>
   </div>
 
   <div class="field">

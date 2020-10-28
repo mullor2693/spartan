@@ -17,7 +17,7 @@
       <tr>
         <td><%= workout.name %></td>
         <td><%= workout.description %></td>
-        <td><%= workout.selected_training_days %></td>
+        <td><%= workout.weekdays_sentence %></td>
         <td><%= link_to 'Show', workout %></td>
         <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
         <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>

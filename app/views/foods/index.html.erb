@@ -1,0 +1,23 @@
+<h1>Foods</h1>
+
+<%= link_to 'Back', authenticated_root_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= link_to 'Show', food %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

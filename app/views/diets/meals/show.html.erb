@@ -1,0 +1,34 @@
+<h1><%= @meal.name %></h1>
+
+<%= link_to 'Back', diet_meals_path(@diet) %> |
+<%= link_to 'Edit', edit_diet_meal_path(@diet, @meal) %> |
+
+<p>
+  <strong>Hora del Dia:</strong>
+  <%= @meal.name_daytime %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Alimento</th>
+      <th>Cantidad</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @meal_foods.each do |meal_food| %>
+      <tr>
+        <td><%= meal_food.food.name %></td>
+        <td><%= "#{meal_food.quantity} #{meal_food.unit}" %></td>
+        <td><%= link_to 'Ver', [@diet, @meal, meal_food] %></td>
+        <td><%= link_to 'Editar', edit_diet_meal_meal_food_path(@diet, @meal, meal_food) %></td>
+        <td><%= link_to 'Borrar', [@diet, @meal, meal_food], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Añadir Alimento', new_diet_meal_meal_food_path(@diet, @meal) %> 
+
