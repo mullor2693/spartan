@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_28_110225) do
+ActiveRecord::Schema.define(version: 2020_10_29_212300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,10 +93,20 @@ ActiveRecord::Schema.define(version: 2020_10_28_110225) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "food_nutrients", force: :cascade do |t|
+    t.bigint "food_id", null: false
+    t.bigint "nutrient_id", null: false
+    t.decimal "quantity"
+    t.string "unit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_food_nutrients_on_food_id"
+    t.index ["nutrient_id"], name: "index_food_nutrients_on_nutrient_id"
+  end
+
   create_table "foods", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.json "components"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -138,6 +148,13 @@ ActiveRecord::Schema.define(version: 2020_10_28_110225) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_measurements_on_user_id"
+  end
+
+  create_table "nutrients", force: :cascade do |t|
+    t.string "name"
+    t.integer "component_group"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -184,7 +201,7 @@ ActiveRecord::Schema.define(version: 2020_10_28_110225) do
 
   create_table "weights", force: :cascade do |t|
     t.float "score"
-    t.datetime "date"
+    t.datetime "evaluation_date"
     t.text "notes"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -207,6 +224,8 @@ ActiveRecord::Schema.define(version: 2020_10_28_110225) do
   add_foreign_key "evaluations", "users"
   add_foreign_key "exercise_workouts", "exercises"
   add_foreign_key "exercise_workouts", "workouts"
+  add_foreign_key "food_nutrients", "foods"
+  add_foreign_key "food_nutrients", "nutrients"
   add_foreign_key "meal_foods", "foods"
   add_foreign_key "meal_foods", "meals"
   add_foreign_key "meals", "diets"

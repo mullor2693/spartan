@@ -1,4 +1,4 @@
-namespace :food do
+namespace :foods do
   desc "Generate foods for seed database"
   task create_initials: :environment do
     food_count = 0
@@ -75169,10 +75169,21 @@ namespace :food do
         food_count+=1
         puts "----------------------------------------"
         puts "Food: #{getter_food[:name]}, started..."
+        food = nil
         food = Food.find_by_name(getter_food[:name])
         if !food.present?
             puts "Create new food!"
-            food = Food.create(getter_food.except(:identificacion))
+            food = Food.create(getter_food.except(:identificacion, :components))
+            getter_food[:components].each do |component|
+                nutrient = nil
+                nutrient = Nutrient.find_by_name(component[:name])
+                if !nutrient.present?
+                    nutrient=Nutrient.create(name: component[:name], component_group: component[:component_group])
+                    puts "Create new nutrient: #{nutrient.name}"
+                end
+                fn = FoodNutrient.create(food: food, nutrient: nutrient, unit: component[:unit], quantity: component[:quantity])
+                puts "Create new #{fn.food.name} asocciantion => #{fn.nutrient.name}: #{fn.quantity}#{fn.unit}"
+            end
             food_created+=1
         end
     end

@@ -16,7 +16,7 @@
     <% @weights.each do |weight| %>
       <tr>
         <td><%= weight.score %></td>
-        <td><%= weight.date %></td>
+        <td><%= weight.evaluation_date %></td>
         <td><%= weight.notes %></td>
         <td><%= link_to 'Show', weight %></td>
         <td><%= link_to 'Edit', edit_weight_path(weight) %></td>

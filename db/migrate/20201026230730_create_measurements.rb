@@ -13,6 +13,8 @@ class CreateMeasurements < ActiveRecord::Migration[6.0]
       t.decimal :left_leg
       t.decimal :right_twin
       t.decimal :left_twin
+      t.datetime :evaluation_date
+      t.text :notes
       t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps

@@ -1,12 +1,8 @@
 <h1>Dashboard#index</h1>
 <p>Find me in app/views/dashboard/index.html.erb</p>
 <% if @current_user.is_admin? %>
-  <%= link_to 'Admin', admin_authenticated_root_path %> |
+  <%= link_to 'Administración', admin_authenticated_root_path %> |
 <% end %>
-<%= link_to 'Diets', diets_path %> |
-<%= link_to 'Foods', foods_path %> |
-<%= link_to 'Evaluations', evaluations_path %> |
-<%= link_to 'Measurements', measurements_path %> |
-<%= link_to 'Weights', weights_path %> |
-<%= link_to 'Workouts', workouts_path %> |
-<%= link_to 'Exercises', exercises_path %> 
+<%= link_to 'Nutrición', nutrition_path %> |
+<%= link_to 'Físico', physical_path %> |
+<%= link_to 'Entrenamiento', training_path %> |

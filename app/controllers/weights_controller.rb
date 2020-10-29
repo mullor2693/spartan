@@ -73,6 +73,6 @@ class WeightsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def weight_params
-      params.require(:weight).permit(:score, :date, :notes)
+      params.require(:weight).permit(:score, :evaluation_date, :notes)
     end
 end

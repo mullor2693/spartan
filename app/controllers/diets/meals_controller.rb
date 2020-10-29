@@ -69,7 +69,6 @@ class Diets::MealsController < Diets::ApplicationController
     def set_meal
       @meal = @meals.find_by(id: params[:id])
       redirect_to diet_meals_path(@diet), alert: 'Meal not found on the diet.' if @meal.blank?
-      @meal_foods = @meal.meal_foods
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @food.name %>
@@ -11,15 +9,13 @@
 </p>
 
 <p>
-  <strong>Components:</strong>
+  <strong>Nutrients:</strong>
   <% Food::COMPONENT_GROUPS.each do |key, name| %>
     <br/><strong><%= name %></strong>
     <% empty_group = true %>
-    <% @food.components.each do |component| %>
-      <% if component["component_group"] == key %>
-        <p><%= "#{component["name"]}: #{component["quantity"]} #{component["unit"]}" %></p>
+    <% @food.food_nutrients.by_component_group(key).each do |fn| %>
+        <p><%= "#{fn.nutrient.name}: #{fn.quantity} #{fn.unit}" %></p>
         <% empty_group = false %>
-      <% end %>
     <% end %>
     <% if empty_group %>
       <p>No hay componentes para esta categoria</p>
@@ -27,5 +23,5 @@
   <% end %>
 </p>
 
-<%= link_to 'Edit', edit_food_path(@food) %> |
-<%= link_to 'Back', foods_path %>
+<%= link_to 'Edit', edit_admin_food_path(@food) %> |
+<%= link_to 'Back', admin_foods_path %>

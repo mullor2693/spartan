@@ -1,7 +1,8 @@
+<%= link_to 'Home', authenticated_root_path %> / <%= link_to 'Nutricion', diets_path %> / <%= link_to @diet.id, diet_path(@diet) %> 
+
 <h1><%= @meal.name %></h1>
 
-<%= link_to 'Back', diet_meals_path(@diet) %> |
-<%= link_to 'Edit', edit_diet_meal_path(@diet, @meal) %> |
+<%= link_to 'Editar Comida', edit_diet_meal_path(@diet, @meal) %> |
 
 <p>
   <strong>Hora del Dia:</strong>
@@ -18,12 +19,11 @@
   </thead>
 
   <tbody>
-    <% @meal_foods.each do |meal_food| %>
+    <% @meal.meal_foods.each do |meal_food| %>
       <tr>
         <td><%= meal_food.food.name %></td>
         <td><%= "#{meal_food.quantity} #{meal_food.unit}" %></td>
         <td><%= link_to 'Ver', [@diet, @meal, meal_food] %></td>
-        <td><%= link_to 'Editar', edit_diet_meal_meal_food_path(@diet, @meal, meal_food) %></td>
         <td><%= link_to 'Borrar', [@diet, @meal, meal_food], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
       </tr>
     <% end %>

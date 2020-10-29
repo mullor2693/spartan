@@ -623,7 +623,7 @@ namespace :exercises do
 
         },
         {
-            name: "Remada Vertical",
+            name: "Remadas Verticales",
             description: "Sube la barra hacia la barbilla, haciéndo fuerza con los codos.Cuando la parte superior de los brazos esté paralela al suelo, deja de tirar y baja la barra con la misma trayectoria. Cuando esté arriba, los codos deberán estar por encima de las muñecas.",
             codes: ["uprightrows1", "uprightrows2", "uprightrows3"],
 

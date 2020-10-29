@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Rake::Task['exercises:create_initials'].invoke
+Rake::Task['foods:create_initials'].invoke
+Rake::Task['roles:create_initials'].invoke
+Rake::Task['users:create_initials'].invoke

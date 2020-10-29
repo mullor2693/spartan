@@ -1,15 +1,37 @@
-<h1>Meal Food</h1>
+<h1><%= @meal_food.food.name %></h1>
 
-<%= link_to 'Back', diet_meal_meal_foods_path(@diet, @meal) %>
-
-<p>
-  <strong>Food:</strong>
-  <%= @meal_food.food.name %>
-</p>
+<%= link_to 'Atras', diet_meal_path(@diet, @meal) %> | 
+<%= link_to 'Editar Alimento', edit_diet_meal_meal_food_path(@diet, @meal, @meal_food) %>
 
 <p>
   <strong>Quantity:</strong>
   <%= "#{@meal_food.quantity} #{@meal_food.unit}" %>
 </p>
 
-<%= link_to 'Edit', edit_diet_meal_meal_food_path(@diet, @meal, @meal_food) %> |
+<p>
+  <strong>Food Components:</strong>
+  <% Food::COMPONENT_GROUPS.each do |key, name| %>
+    <br/>
+    <% empty_group = true %>
+    <table>
+      <thead>
+        <tr>
+          <th><%= name %></th>
+          <th>Cantidad (100g)</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody> 
+        <% @meal_food.food.components.each do |component| %>
+          <% if component["component_group"] == key %>
+            <tr><td><%= component["name"] %></td><td><%= "#{component["quantity"]} #{component["unit"]}" %></td></tr>
+            <% empty_group = false %>
+          <% end %>
+        <% end %>
+        <% if empty_group %>
+          <tr><td colspan="2">No hay componentes para esta categoria</td></tr> 
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</p>

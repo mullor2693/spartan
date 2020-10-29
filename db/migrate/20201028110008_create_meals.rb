@@ -4,6 +4,7 @@ class CreateMeals < ActiveRecord::Migration[6.0]
       t.string :name
       t.belongs_to :diet, null: false, foreign_key: true
       t.integer :daytime
+      t.text :notes
 
       t.timestamps
     end
