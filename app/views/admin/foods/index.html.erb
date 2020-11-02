@@ -1,4 +1,4 @@
-<h1 class="uk-heading-divider"><%= link_to "", admin_nutrition_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> Alimentos</h1>
+<h1 class="uk-heading-divider"><%= link_to "", admin_nutrition_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> Alimentos <%= link_to 'Nuevo Alimento', new_admin_food_path, class:"uk-button uk-button-default uk-align-right" %></h1>
 
 <div uk-grid>
     <div class="uk-width-expand@m">
@@ -14,5 +14,3 @@
       </table>
     </div>
 </div>
-
-<%= link_to 'New Food', new_admin_food_path, class:"uk-button uk-button-default"  %>

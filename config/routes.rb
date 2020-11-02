@@ -13,7 +13,15 @@ Rails.application.routes.draw do
       get "/nutrition", to: "dashboard#nutrition", as: :nutrition
       scope 'nutrition' do
         resources :foods
-        resources :diets
+        resources :diets do
+          scope module: 'diets' do
+            resources :meals do
+              scope module: 'meals' do
+                resources :meal_foods
+              end
+            end
+          end
+        end
       end
       
       resources :users do

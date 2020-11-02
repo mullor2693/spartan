@@ -1,22 +1,22 @@
 <h1 class="uk-heading-divider"><%= link_to "", nutrition_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> Peso</h1>
 
-<ul class="uk-child-width-expand" uk-tab>
+<ul class="uk-child-width-expand uk-position-bottom uk-margin-large-top" uk-tab>
     <li class="uk-active"><a href="#">Monitor</a></li>
     <li><a href="#">Historial</a></li>
 </ul>
 
 <ul class="uk-switcher uk-margin">
-    <li class="uk-active uk-text-center">
+    <li class="uk-active uk-text-center ">
       <% if @last_weight %>
         <p class="uk-padding-small"><%= @last_weight.evaluation_date.to_date %></p>
         <div class="uk-flex uk-flex-center">
-            <div class="uk-card uk-card-default uk-card-body"><h3 class="uk-card-title"><%= @last_weight.score %> Kg</h3></div>
+            <h3 class="uk-text-bold"><span class="count"><%= @last_weight.score %></span> Kg</h3>
         </div>
       <% else %>
         <p>No hay registros de peso, introuzcalo.</p>
       <% end %>
       <div class="uk-padding">
-        <%= link_to 'Nuevo registro', new_weight_path %>
+        <%= link_to 'Nuevo registro', new_weight_path, class:"uk-button uk-button-default" %>
       </div>
     </li>
     <li>
@@ -41,4 +41,37 @@
     </li>
 </ul>
 
+<div id="parentDiv"><canvas id="myChart" width="15000" height="400"></canvas></div>
 
+<script>
+       $("#parentDiv").css("width", "1000px");
+       $("#parentDiv").css("overflow", "auto");
+</script>
+
+
+<script>
+$(document).ready(function() {
+
+  var counters = $(".count");
+  var countersQuantity = counters.length;
+  var counter = [];
+
+  for (i = 0; i < countersQuantity; i++) {
+    counter[i] = parseInt(counters[i].innerHTML);
+  }
+
+  var count = function(start, value, id) {
+    var localStart = start;
+    setInterval(function() {
+      if (localStart < value) {
+        localStart++;
+        counters[id].innerHTML = localStart;
+      }
+    }, 20);
+  }
+
+  for (j = 0; j < countersQuantity; j++) {
+    count(0, counter[j], j);
+  }
+});
+</script>
