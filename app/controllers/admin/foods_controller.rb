@@ -45,6 +45,7 @@ class Admin::FoodsController < Admin::ApplicationController
   # PATCH/PUT /foods/1
   # PATCH/PUT /foods/1.json
   def update
+    debugger
     respond_to do |format|
       if @food.update(food_params)
         format.html { redirect_to [:admin, @food], notice: 'Food was successfully updated.' }
@@ -72,7 +73,11 @@ class Admin::FoodsController < Admin::ApplicationController
     def set_food
       @food = Food.find_by(id: params[:id])
       redirect_to admin_foods_path, alert: 'Food not found on the system.' if @food.blank?
+    end
 
+    # Only allow a list of trusted parameters through.
+    def food_params
+      params.require(:food).permit(:name, :description)
     end
 
 end

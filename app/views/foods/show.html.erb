@@ -1,4 +1,4 @@
-<h1>Food</h1>
+<h1 class="uk-heading-divider">Food</h1>
 
 <%= link_to 'Back', foods_path %>
 
@@ -15,14 +15,11 @@
 <p>
   <strong>Nutrients:</strong>
   <% Food::COMPONENT_GROUPS.each do |key, name| %>
-    <br/><strong><%= name %></strong>
-    <% empty_group = true %>
-    <% @food.food_nutrients.by_component_group(key).each do |fn| %>
-        <p><%= "#{fn.nutrient.name}: #{fn.quantity} #{fn.unit}" %></p>
-        <% empty_group = false %>
-    <% end %>
-    <% if empty_group %>
-      <p>No hay componentes para esta categoria</p>
+    <% if @food.food_nutrients.by_component_group(key).present? %>
+      <br/><strong><%= name %></strong>
+      <% @food.food_nutrients.by_component_group(key).each do |fn| %>
+          <p><%= "#{fn.nutrient.name}: #{fn.quantity} #{fn.unit}" %></p>
+      <% end %>
     <% end %>
   <% end %>
 </p>

@@ -1,0 +1,19 @@
+<%= link_to [:admin, exercise], class:"uk-link-reset" do %>
+<div class="uk-card-header uk-text-center">
+    <div class="uk-width-auto">
+      <%= image_tag  exercise.examples.attached? ? exercise.examples.first : "users/avatar2.png", class:"uk-border-circle" %>
+    </div>
+  <div class="uk-width-expand">
+    <h3 class="uk-card-title uk-margin-remove-bottom"><%= exercise&.name %></h3>
+    <p class="uk-text-meta uk-margin-remove-top">Creado: <time datetime="<%= exercise&.created_at %>"><%= exercise&.created_at&.to_date %></time></p>
+  </div>
+</div>
+<div class="uk-card-body">
+  <ul class="uk-list">
+    <li></li>
+  </ul>
+</div>
+<div class="uk-card-footer">
+  <%= link_to 'Ver', [:admin, exercise], class: "uk-button uk-button-text" %>
+</div>
+<% end %>

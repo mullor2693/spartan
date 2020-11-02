@@ -1,31 +1,28 @@
-<h1>Workouts</h1>
+<h1 class="uk-heading-divider"><%= link_to "", admin_authenticated_root_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> Entrenamientos</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Training days</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div uk-grid>
+    <div class="uk-width-expand@m">
+      <table class="uk-table uk-table-divider uk-table-small uk-table-justify">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Dias de Entrenamiento</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @workouts.each do |workout| %>
+          <tr>
+            <td><%= workout.name %></td>
+            <td><%= workout.description %></td>
+            <td><%= workout.weekdays_sentence %></td>
+            <td><%= link_to '', [:admin, workout], :"uk-icon" => "chevron-right", class: "uk-icon"%></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
 
-  <tbody>
-    <% @workouts.each do |workout| %>
-      <tr>
-        <td><%= workout.name %></td>
-        <td><%= workout.description %></td>
-        <td><%= workout.weekdays_sentence %></td>
-        <td><%= workout.user_id %></td>
-        <td><%= link_to 'Show', admin_user_workout_path(workout.user, workout) %></td>
-        <td><%= link_to 'Edit', edit_admin_user_workout_path(workout.user, workout) %></td>
-        <td><%= link_to 'Destroy', admin_user_workout_path(workout.user, workout), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Workout', new_admin_user_workout_path(params[:user_id]) %>
+<%= link_to 'Nuevo Entrenamiento', new_admin_workout_path, class:"uk-button uk-button-default" %>

@@ -1,4 +1,5 @@
 class Admin::WorkoutsController < Admin::ApplicationController
+  before_action :set_workouts
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
 
   # GET /workouts
@@ -15,6 +16,7 @@ class Admin::WorkoutsController < Admin::ApplicationController
   # GET /workouts/new
   def new
     @workout = Workout.new
+    @workout.creator = @current_user
   end
 
   # GET /workouts/1/edit
@@ -25,11 +27,12 @@ class Admin::WorkoutsController < Admin::ApplicationController
   # POST /workouts.json
   def create
     @workout = Workout.new(workout_params)
-
+    @workout.creator = @current_user
     respond_to do |format|
       if @workout.save
-        format.html { redirect_to @workout, notice: 'Workout was successfully created.' }
-        format.json { render :show, status: :created, location: @workout }
+        track("workout.create", @workout)
+        format.html { redirect_to [:admin, @workout], notice: 'Workout was successfully created.' }
+        format.json { render :show, status: :created, location: [:admin, @workout] }
       else
         format.html { render :new }
         format.json { render json: @workout.errors, status: :unprocessable_entity }
@@ -42,8 +45,9 @@ class Admin::WorkoutsController < Admin::ApplicationController
   def update
     respond_to do |format|
       if @workout.update(workout_params)
-        format.html { redirect_to @workout, notice: 'Workout was successfully updated.' }
-        format.json { render :show, status: :ok, location: @workout }
+        track("workout.update", @workout)
+        format.html { redirect_to [:admin, @workout], notice: 'Workout was successfully updated.' }
+        format.json { render :show, status: :ok, location: [:admin, @workout] }
       else
         format.html { render :edit }
         format.json { render json: @workout.errors, status: :unprocessable_entity }
@@ -56,15 +60,21 @@ class Admin::WorkoutsController < Admin::ApplicationController
   def destroy
     @workout.destroy
     respond_to do |format|
-      format.html { redirect_to workouts_url, notice: 'Workout was successfully destroyed.' }
+      track("workout.destroy", @workout)
+      format.html { redirect_to admin_workouts_url, notice: 'Workout was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_workouts
+      @workouts = Workout.all
+    end
+
     def set_workout
-      @workout = Workout.find(params[:id])
+      @workout = @workouts.find_by(id: params[:id])
+      redirect_to workouts_path, alert: 'Exercise not found on the workout.' if @workout.blank?
     end
 
     # Only allow a list of trusted parameters through.

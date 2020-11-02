@@ -1,0 +1,28 @@
+<%= link_to [:admin, user], class:"uk-link-reset" do %>
+<div class="uk-card-header uk-text-center">
+  <div class="uk-width-auto" id="user-avatar-container">
+    <%= image_tag user.avatar.attached? ? user.avatar : "users/avatar.png", class:"uk-border-circle" %>
+  </div>
+  <div class="uk-width-expand">
+    <h3 class="uk-card-title uk-margin-remove-bottom"><%= user&.full_name %></h3>
+    <p class="uk-text-meta uk-margin-remove-top">Alta: <time datetime="<%= user&.created_at %>"><%= user&.created_at&.to_date %></time></p>
+  </div>
+</div>
+<div class="uk-card-body">
+  <ul class="uk-list">
+    <li>F. Nacimiento: <%= user&.birth_date %></li>
+    <li>Sexo: <%= user&.sex %></li>
+    <li>Altura: <%= user&.height %></li>
+    <li>Peso: <%= user&.weight %></li> 
+  </ul>
+  <ul class="uk-list">
+    <li>Correo: <%= user&.email %></li>
+    <li>Telefono: <%= user&.phone %></li>
+  </ul>
+</div>
+<div class="uk-card-footer">
+    <%= link_to 'Editar', edit_admin_user_path(user), class: "uk-button uk-button-text" %> | 
+    <%= link_to 'Dietas', admin_user_diets_path(user), class: "uk-button uk-button-text" %> | 
+    <%= link_to 'Entrenamientos', admin_user_workouts_path(user), class: "uk-button uk-button-text" %>
+</div>
+<% end %>

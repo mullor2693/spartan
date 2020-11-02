@@ -39,6 +39,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string    :dni
       t.string    :address
       t.integer   :phone
+      t.decimal   :height
+      t.decimal   :weight
+      t.decimal   :desired_weight
+      t.integer   :sex
 
 
       t.timestamps null: false

@@ -15,6 +15,7 @@ class WeightsController < ApplicationController
   # GET /weights/new
   def new
     @weight = @weights.new
+    @weight.evaluation_date = DateTime.now()
   end
 
   # GET /weights/1/edit
@@ -64,6 +65,7 @@ class WeightsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user_weights
       @weights = @current_user.weights
+      @last_weight = @current_user.last_weight
     end
 
     def set_weight

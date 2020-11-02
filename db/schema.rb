@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_212300) do
+ActiveRecord::Schema.define(version: 2020_11_01_221150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,6 +167,37 @@ ActiveRecord::Schema.define(version: 2020_10_29_212300) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
+  create_table "tracking_logs", force: :cascade do |t|
+    t.string "event_type"
+    t.integer "trackeable_id"
+    t.string "trackeable_type"
+    t.integer "user_id"
+    t.string "ip_address"
+    t.json "metadata", default: {}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["trackeable_id", "trackeable_type"], name: "index_tracking_logs_on_trackeable_id_and_trackeable_type"
+    t.index ["user_id"], name: "index_tracking_logs_on_user_id"
+  end
+
+  create_table "user_diets", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "diet_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["diet_id"], name: "index_user_diets_on_diet_id"
+    t.index ["user_id"], name: "index_user_diets_on_user_id"
+  end
+
+  create_table "user_workouts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "workout_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_workouts_on_user_id"
+    t.index ["workout_id"], name: "index_user_workouts_on_workout_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -187,6 +218,9 @@ ActiveRecord::Schema.define(version: 2020_10_29_212300) do
     t.string "address"
     t.integer "phone"
     t.float "desired_weight"
+    t.decimal "height"
+    t.decimal "weight"
+    t.integer "sex"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -230,6 +264,10 @@ ActiveRecord::Schema.define(version: 2020_10_29_212300) do
   add_foreign_key "meal_foods", "meals"
   add_foreign_key "meals", "diets"
   add_foreign_key "measurements", "users"
+  add_foreign_key "user_diets", "diets"
+  add_foreign_key "user_diets", "users"
+  add_foreign_key "user_workouts", "users"
+  add_foreign_key "user_workouts", "workouts"
   add_foreign_key "weights", "users"
   add_foreign_key "workouts", "users"
 end

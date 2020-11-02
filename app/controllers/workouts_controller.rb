@@ -27,7 +27,7 @@ class WorkoutsController < ApplicationController
     @workout = @workouts.new(workout_params)
     respond_to do |format|
       if @workout.save
-        format.html { redirect_to @workout, notice: 'Workout was successfully created.' }
+        format.html { redirect_to [:admin, @workout, notice: 'Workout was successfully created.' }
         format.json { render :show, status: :created, location: @workout }
       else
         format.html { render :new }

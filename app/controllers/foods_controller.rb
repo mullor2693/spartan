@@ -18,7 +18,6 @@ class FoodsController < ApplicationController
     def set_food
       @food = Food.find_by(id: params[:id])
       redirect_to foods_path, alert: 'Food not found on the system.' if @food.blank?
-
     end
 
 end

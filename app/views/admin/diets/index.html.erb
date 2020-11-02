@@ -1,0 +1,28 @@
+<h1 class="uk-heading-divider"><%= link_to "", admin_nutrition_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> Dietas</h1>
+
+<div uk-grid>
+    <div class="uk-width-expand@m">
+      <table class="uk-table uk-table-divider uk-table-small uk-table-justify">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Dias de Aplicación</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @diets.each do |diet| %>
+          <tr>
+            <td><%= diet.name %></td>
+            <td><%= diet.description %></td>
+            <td><%= diet.weekdays_sentence %></td>
+            <td><%= link_to '', [:admin, diet], :"uk-icon" => "chevron-right", class: "uk-icon"%></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<%= link_to 'Nueva Dieta', new_admin_diet_path %>

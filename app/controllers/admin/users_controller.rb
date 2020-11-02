@@ -63,12 +63,12 @@ class Admin::UsersController < Admin::ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find_by(id: params[:id])
+      @user = User.with_attached_avatar.find_by(id: params[:id])
       redirect_to admin_users_path, alert: 'User not found on the system.' if @user.blank?
     end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email, :name, :surname, :birth_date, :dni, :address, :phone)
+      params.require(:user).permit(:email, :name, :surname, :birth_date, :dni, :address, :phone, :sex, :height, :weight, :desired_weight, :avatar)
     end
 end

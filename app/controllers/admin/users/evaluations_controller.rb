@@ -1,4 +1,5 @@
 class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
+  before_action :set_user_evaluations
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
 
   # GET /evaluations
@@ -63,8 +64,13 @@ class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_user_evaluations
+      @evaluations = @user.evaluations
+    end
+
     def set_evaluation
-      @evaluation = Evaluation.find(params[:id])
+      @evaluation = @evaluations.find_by(id: params[:id])
+      redirect_to admin_user_evaluations_path(@user), alert: 'Diet not found on user.' if @evaluation.blank?
     end
 
     # Only allow a list of trusted parameters through.

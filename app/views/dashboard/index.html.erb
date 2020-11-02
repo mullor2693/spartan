@@ -1,8 +1,28 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
-<% if @current_user.is_admin? %>
-  <%= link_to 'Administración', admin_authenticated_root_path %> |
-<% end %>
-<%= link_to 'Nutrición', nutrition_path %> |
-<%= link_to 'Físico', physical_path %> |
-<%= link_to 'Entrenamiento', training_path %> |
+<div class="uk-margin-left">
+  <h1 class="uk-heading-divider">Dashboard</h1>
+
+  <div class="uk-child-width-1-3@m uk-grid-match" uk-grid>
+      <% [
+        ['Perfil', "Acceso al prefil de usuario.", profile_path],
+        ['Nutrición', "Acceso al servicio de nutrición.", nutrition_path],
+        ['Físico', "Acceso al servicio de mediciones y evaluaciones.", physical_path],
+        ['Entrenamiento', "Acceso al servicio de entrenamientos.", training_path]
+      ].each do |link_url| %>
+          <div>
+            <%= link_to link_url[2], class:"uk-card uk-card-default uk-card-hover uk-card-body uk-link-reset" do %>
+              <h3 class="uk-card-title"><%= link_url[0] %></h3>
+              <p><%= link_url[1] %></p>
+            <% end %>
+          </div>
+      <% end %>
+
+      <% if @current_user.is_admin? %>
+        <div>
+          <%= link_to admin_authenticated_root_path, class:"uk-card uk-card-primary uk-card-hover uk-card-body uk-link-reset" do %>
+            <h3 class="uk-card-title">Administración</h3>
+            <p>Acceso al servicio de administracion de la app.</p>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+</div>

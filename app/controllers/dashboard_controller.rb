@@ -2,6 +2,9 @@ class DashboardController < ApplicationController
   def index
   end
 
+  def rpofile
+  end
+
   def physical
   end
 

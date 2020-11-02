@@ -5,9 +5,17 @@ Rails.application.routes.draw do
   authenticated :user do
 
     namespace :admin do
-
-      resources :foods
-      resources :exercises
+      get "/training", to: "dashboard#training", as: :training
+      scope 'training' do
+        resources :exercises
+        resources :workouts
+      end
+      get "/nutrition", to: "dashboard#nutrition", as: :nutrition
+      scope 'nutrition' do
+        resources :foods
+        resources :diets
+      end
+      
       resources :users do
         scope module: 'users' do
           resources :diets do
@@ -33,6 +41,9 @@ Rails.application.routes.draw do
       root 'dashboard#index', as: :authenticated_root
 
     end
+
+    get "/profile", to: "dashboard#profile", as: :profile
+
     get "/nutrition", to: "dashboard#nutrition", as: :nutrition
     scope 'nutrition' do
       resources :diets do
@@ -44,14 +55,15 @@ Rails.application.routes.draw do
           end
         end
       end
+      resources :weights
       resources :foods, only: [:index, :show]
+
     end
 
     get "/physical", to: "dashboard#physical", as: :physical
     scope 'physical' do
       resources :measurements
       resources :evaluations
-      resources :weights
     end
 
     get "/training", to: "dashboard#training", as: :training
@@ -71,6 +83,6 @@ Rails.application.routes.draw do
   
   root to: "home#index"
 
-  match "*path", to: "home#none", via: :all
+  # match "*path", to: "home#none", via: :all
 
 end

@@ -8,7 +8,5 @@ class CreateWeights < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-
-    add_column :users, :desired_weight, :decimal
   end
 end
