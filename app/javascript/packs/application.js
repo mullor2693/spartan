@@ -8,10 +8,16 @@ const Icons = require("packs/uikit-icons")
 
 UIkit.use(Icons);
 
-require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("chartkick")
+require("chart.js")
+
+import Rails from "@rails/ujs";
+if (Rails.fire(document, "rails:attachBindings")) {
+  Rails.start();
+}
 
 global.toastr = require("toastr")
 

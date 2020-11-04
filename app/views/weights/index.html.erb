@@ -1,6 +1,6 @@
 <h1 class="uk-heading-divider"><%= link_to "", nutrition_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> Peso</h1>
 
-<ul class="uk-child-width-expand uk-position-bottom uk-margin-large-top" uk-tab>
+<ul class="uk-child-width-expand" uk-tab>
     <li class="uk-active"><a href="#">Monitor</a></li>
     <li><a href="#">Historial</a></li>
 </ul>
@@ -10,7 +10,7 @@
       <% if @last_weight %>
         <p class="uk-padding-small"><%= @last_weight.evaluation_date.to_date %></p>
         <div class="uk-flex uk-flex-center">
-            <h3 class="uk-text-bold"><span class="count"><%= @last_weight.score %></span> Kg</h3>
+            <h3 class="uk-text-bold"><span class="count"><%= '%.2f' % @last_weight.score %></span> Kg</h3>
         </div>
       <% else %>
         <p>No hay registros de peso, introuzcalo.</p>
@@ -20,6 +20,7 @@
       </div>
     </li>
     <li>
+      <%= line_chart @weights.order(evaluation_date: :desc).map {|e| [e.evaluation_date.to_date, "#{'%.2f' % e.score} Kg"] } %>
       <table class="uk-table">
         <thead>
           <tr>
@@ -32,7 +33,7 @@
           <% @weights.each do |weight| %>
             <tr>
               <td><%= weight.evaluation_date.to_date %></td>
-              <td><%= weight.score %></td>
+              <td><%= '%.2f' % weight.score %></td>
               <td><%= link_to 'Ver', weight %></td>
             </tr>
           <% end %>

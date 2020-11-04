@@ -1,30 +1,25 @@
 <h1 class="uk-heading-divider"><%= link_to "", admin_authenticated_root_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> Usuarios</h1>
 
 <div uk-grid>
-    <div class="uk-width-expand@m">
-            <table class="uk-table uk-table-divider uk-table-small uk-table-justify">
-              <thead>
-                <tr>
-                  <th>Email</th>
-                  <th>Full Name</th>
-                  <th></th>
-                </tr>
-              </thead>
+  <div class="uk-width-expand@m">
+    <table class="uk-table uk-table-divider uk-table-small uk-table-justify">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Full Name</th>
+          <th></th>
+        </tr>
+      </thead>
 
-              <tbody>
-                <% @users.each do |user| %>
-                  <tr>
-                    <td><%= user.email %></td>
-                    <td><%= user.full_name %></td>
-                    <td><%= link_to '', [:admin, user], data: {remote: true, type: "json"}, :"uk-icon" => "chevron-right", class: "uk-icon", onClick: '$("#user-side-info").fadeOut("slow");'%></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-    </div>
-    <div class="uk-width-1-3@m">
-      <div class="uk-card uk-card-default uk-card-hover" id="user-side-info" uk-sticky="offset: 60">
-        <%= render 'side_info', user: @current_user %>
-      </div>
-    </div>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr class="#ajaxShow" data-link="<%= admin_user_path(user) %>" style="cursor: pointer;">
+            <td><%= user.email %></td>
+            <td><%= user.full_name %></td>
+            <td><%= link_to '', [:admin, user], :"uk-icon" => "chevron-right", class: "uk-icon" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

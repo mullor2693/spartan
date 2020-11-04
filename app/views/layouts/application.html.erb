@@ -7,14 +7,17 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'custom', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body  class="uk-height-1-1">
+    <%#= render 'shared/navbar' %>
     <div class="uk-height-1-1 tm-main uk-section uk-section-default">
       <div class="uk-height-1-1 uk-container uk-container-small uk-position-relative">
         <%= yield %>
       </div>
     </div>
+    <%= render 'shared/modal' %>
   </body>
 </html>
 

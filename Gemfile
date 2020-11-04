@@ -57,3 +57,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
+
+# Gem for charts
+gem "chartkick"
+
+# Gem for searching ActiveRecord models
+gem 'ransack', github: 'activerecord-hackery/ransack'

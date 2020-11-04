@@ -24,9 +24,11 @@ class DietsController < ApplicationController
   # POST /diets
   # POST /diets.json
   def create
-    @diet = @diets.new(diet_params)
+    @diet = Diet.new(diet_params)
+    @diet.creator = @current_user
     respond_to do |format|
       if @diet.save
+        @current_user.diets << @diet
         format.html { redirect_to @diet, notice: 'Diet was successfully created.' }
         format.json { render :show, status: :created, location: @diet }
       else

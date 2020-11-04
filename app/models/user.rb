@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Includes
   rolify
   devise :database_authenticatable, :recoverable, :validatable, :trackable
+  include Imageable
 
   # Associations
   has_many :user_workouts
@@ -34,8 +35,11 @@ class User < ApplicationRecord
   end
 
   # Object Methods
+  def avatar_sized(size)
+      avatar.variant(Imageable.sizes[size]).processed
+  end
 
-  # Claas Methods
+  # Class Methods
   def self.html_from_track_info(info)
     user = User.find(info["id"])
     if( user.present? )

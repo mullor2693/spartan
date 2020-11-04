@@ -1,0 +1,22 @@
+<div class="uk-modal-header">
+    <%#= image_tag user.avatar.attached? ? user.avatar_sized(:thumb) : "users/avatar.png", class:"uk-border-circle" %>
+    <h2 class="uk-modal-title"><%= user&.full_name %></h2>
+    <p class="uk-text-meta uk-margin-remove-top">Alta: <time datetime="<%= user&.created_at %>"><%= user&.created_at&.to_date %></time></p>
+</div>
+<div class="uk-modal-body">
+    <ul class="uk-list">
+    <li>F. Nacimiento: <%= user&.birth_date %></li>
+    <li>Sexo: <%= user&.sex %></li>
+    <li>Altura: <%= user&.height %></li>
+    <li>Peso: <%= user&.weight %></li> 
+  </ul>
+  <ul class="uk-list">
+    <li>Correo: <%= user&.email %></li>
+    <li>Telefono: <%= user&.phone %></li>
+  </ul>
+</div>
+<div class="uk-modal-footer uk-text-right">
+    <%= link_to 'Dietas', admin_user_diets_path(user), class: "uk-button uk-button-default" %> 
+    <%= link_to 'Entrenamientos', admin_user_workouts_path(user), class: "uk-button uk-button-default" %>
+    <%= link_to 'Ver Perfil', [:admin, user], class:"uk-button uk-button-primary" %>
+</div>
