@@ -1,0 +1,32 @@
+<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+    <nav class="uk-navbar-container head-navbar" uk-navbar>
+        <div class="uk-navbar-left">
+            <%= link_to authenticated_root_path, class: "uk-navbar-item uk-logo" do %>
+            <%= image_tag "app/logo4.png" %>
+            Spartan
+            <% end %>
+            <ul class="uk-navbar-nav">...</ul>
+            <div class="uk-navbar-item">...</div>
+        </div>
+
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="#">
+                        <%= image_tag current_user.avatar.attached? ? current_user.avatar_sized(:small) : "users/avatar.png", class:"uk-border-circle"%>
+                    </a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                        
+                            <li><%= link_to profile_path do %><span class="uk-margin-right" uk-icon="user"></span>Perfil<% end %></li>
+                            <li><%= link_to profile_path do %><span class="uk-margin-right" uk-icon="settings"></span> Ajustes<% end %></li>
+                            <li class="uk-nav-divider"></li>
+                            <li><%= link_to destroy_user_session_path, method: :delete do %><span class="uk-margin-right" uk-icon="sign-out"></span> Salir<% end %></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</div>

@@ -1,16 +1,16 @@
+require 'faker'
+
 namespace :users do
     desc "Generate users for seed database"
     task create_initials: :environment do
         # Users
         user_count = 0
         user_created = 0
+        getter_user = { email: Faker::Internet.email(domain: 'spartan.admin'), password: "password", name: Faker::Name.first_name, surname: Faker::Name.last_name }
         puts "----------------------------------------"
         puts "CREATE USERS"
         puts "----------------------------------------\n"
-        [
-            { email: "first@test.com", password: "password", name: "First", surname: "Test" },
-            { email: "second@test.com", password: "password", name: "Second", surname: "Test" }
-        ].each do |getter_user|
+        (1...5).each do 
             user_count+=1
             puts "----------------------------------------"
             puts "User: #{getter_user[:name]}, started..."
@@ -18,7 +18,7 @@ namespace :users do
             if !user.present?
                 puts "Create new user!"
                 user = User.create(getter_user)
-                user.roles << Role.find(user_created+1) if Role.find_by(id: user_created+1).present?
+                user.roles << Role.find(1) if Role.find_by(id: 1).present?
                 user_created+=1
             end
         end
@@ -41,9 +41,9 @@ namespace :users do
             
             random_name = ('a'..'z').to_a.shuffle[0,8].join
             getter_user = {}
-            getter_user[:name] = random_name.capitalize
-            getter_user[:surname] = ('a'..'z').to_a.shuffle[0,8].join.capitalize + " " + ('a'..'z').to_a.shuffle[0,8].join.capitalize
-            getter_user[:email] = "#{random_name}@test.com"
+            getter_user[:name] = Faker::Name.first_name
+            getter_user[:surname] = Faker::Name.last_name
+            getter_user[:email] = Faker::Internet.email(domain: 'spartan.test')
             getter_user[:password] = "password"
             getter_user[:birth_date] = Date.today - rand(18...60).years - rand(0...12).months - rand(0...30).days
             getter_user[:dni] = rand(10000000...99999999).to_s + ('A'...'Z').to_a.shuffle[0,1].join

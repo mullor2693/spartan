@@ -11,16 +11,16 @@
     <% end %>
 </div>
 <div>
-    <div class="uk-width-expand@m">
-      <table class="uk-table uk-table-divider uk-table-small uk-table-justify">
-        <tbody>
-          <% @foods.each do |food| %>
-            <tr>
-              <td><%= food.name %></td>
-              <td class="uk-align-right uk-margin-remove"><%= link_to '', food, :"uk-icon" => "chevron-right", class: "uk-icon" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+  <div class="uk-width-expand@m">
+    <table class="uk-table uk-table-divider uk-table-small uk-table-justify">
+      <tbody>
+        <% @foods.each do |food| %>
+          <tr>
+            <td><%= food.name %></td>
+            <td class="uk-align-right uk-margin-remove"><%= link_to '', food, :"uk-icon" => "chevron-right", class: "uk-icon" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

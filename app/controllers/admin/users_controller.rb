@@ -4,7 +4,8 @@ class Admin::UsersController < Admin::ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true)
   end
 
   # GET /users/1
@@ -69,6 +70,6 @@ class Admin::UsersController < Admin::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email, :name, :surname, :birth_date, :dni, :address, :phone, :sex, :height, :weight, :desired_weight, :avatar)
+      params.require(:user).permit(:email, :password, :name, :surname, :birth_date, :dni, :address, :phone, :sex, :height, :weight, :desired_weight, :avatar)
     end
 end

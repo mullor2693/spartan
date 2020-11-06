@@ -1,6 +1,6 @@
 const UIkit = require('uikit');
 
-$(document).on("click", function () {
+$(document).on("ready", function () {
   $("tr.ajaxShow[data-link]").on("click", function (e) {
     e.preventDefault();
     $.ajax({
@@ -18,3 +18,4 @@ $(document).on("click", function () {
     
   });
 });
+

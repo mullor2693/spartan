@@ -1,64 +1,38 @@
-<%= form_with(model: [:admin, user], local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<%= form_with(model: [:admin, user], local: true, id: "admin_user_form") do |form| %>
+  <fieldset class="uk-fieldset uk-grid-small" uk-grid>
+    <div class="<%= user.new_record? ? "uk-width-3-4@s" : "uk-width-1-1" %>">
+      <%= form.text_field :email, class: (user.errors[:email].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Correo electrónico" %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :surname %>
-    <%= form.text_field :surname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :birth_date %>
-    <%= form.date_field :birth_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :dni %>
-    <%= form.text_field :dni %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.number_field :phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :avatar %>
-    <%= form.file_field :avatar %>
-  </div>
-  
-  <% if user.new_record? %>
-    <div class="field">
-      <%= form.label :password %>
-      <%= form.text_field :password, value: Devise.friendly_token.first(8) %>
+    <% if user.new_record? %>
+      <div class="uk-width-1-4@s">
+        <%= form.text_field :password, value: Devise.friendly_token.first(8), class:  (user.errors[:password].present? ? "uk-input uk-form-danger" : "uk-input") %>
+      </div>
+    <% end %>
+    <div class="uk-width-1-3@s">
+      <%= form.text_field :name, class: (user.errors[:name].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Nombre" %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="uk-width-2-3@s">
+      <%= form.text_field :surname, class: (user.errors[:surname].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Apellidos" %>
+    </div>
+    <div class="uk-width-1-3@s">
+      <%= form.text_field :dni, class: (user.errors[:dni].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "DNI" %>
+    </div>
+    <div class="uk-width-1-3@s">
+      <%= form.number_field :phone, class: (user.errors[:phone].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Teléfono" %>
+    </div>
+    <div class="uk-width-1-3@s">
+      <%= form.date_field :birth_date, class: (user.errors[:birth_date].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Fecha de nacimiento" %>
+    </div>
+    <div class="uk-width-1-1">
+      <%= form.text_field :address, class: (user.errors[:address].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Dirección" %>
+    </div>
+    <% unless user.new_record? %>
+      <div class="uk-width-1-1">
+        <div uk-form-custom>
+          <%= form.file_field :avatar %>
+          <button class="uk-button uk-button-default" type="button" tabindex="-1">Avatar</button>
+        </div>
+      </div>
+    <% end %>
+  </fieldset>
 <% end %>

@@ -1,6 +1,16 @@
-<h1 class="uk-heading-divider"><%= link_to "", admin_authenticated_root_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> Usuarios</h1>
-
-<div uk-grid>
+<%= render partial: "shared/headers/button_header", locals: {back_path: admin_authenticated_root_path, section_name: "Usuarios", link_path: new_admin_user_path, link_name: "Nuevo Usuario"}  %>
+<div class="uk-margin uk-align-right">
+  <%= search_form_for @q, url: admin_users_path, id: "admin_user_search" do |f| %>
+    <div class="uk-search uk-search-default">
+      <%= f.search_field :name_or_surname_cont, class: "uk-search-input", placeholder: "Buscar..." %>
+    </div>
+    <% if !@q.conditions.empty?%>
+      <%= link_to "", admin_users_path, class: "uk-button uk-button-default uk-icon", :"uk-icon" => "trash" %>
+    <%end%>
+    <%= link_to '', "#", onclick:"$('#admin_user_search').submit()", class:"uk-button uk-button-default uk-icon", "uk-icon": "search"  %>
+  <% end %>
+</div>
+<div>
   <div class="uk-width-expand@m">
     <table class="uk-table uk-table-divider uk-table-small uk-table-justify">
       <thead>
@@ -10,7 +20,6 @@
           <th></th>
         </tr>
       </thead>
-
       <tbody>
         <% @users.each do |user| %>
           <tr class="#ajaxShow" data-link="<%= admin_user_path(user) %>" style="cursor: pointer;">

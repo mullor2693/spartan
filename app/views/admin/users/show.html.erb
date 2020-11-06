@@ -1,12 +1,17 @@
-<h1 class="uk-heading-divider"><%= link_to "", admin_users_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> <%= @user.full_name %></h1>
+<h1 class="uk-heading-divider"><%= link_to "", admin_users_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> Usuario<%= link_to 'Editar', edit_admin_user_path(@user), class:"uk-button uk-button-default uk-align-right" %></h1>
 
 <p>
-  <strong>Email:</strong>
+  <strong>Nombre:</strong>
+  <%= @user.full_name %>
+</p>
+
+<p>
+  <strong>Correo:</strong>
   <%= @user.email %>
 </p>
 
 <p>
-  <strong>Birth Date:</strong> 
+  <strong>Fecha de Nacimiento:</strong> 
   <%= @user.birth_date.try(:to_date) %>
 </p>
 
@@ -16,20 +21,27 @@
 </p>
 
 <p>
-  <strong>Address:</strong> 
+  <strong>Dirección:</strong> 
   <%= @user.address %>
 </p>
 
 <p>
-  <strong>Phone:</strong> 
+  <strong>Teléfono:</strong> 
   <%= @user.phone %>
 </p>
-
-<%= link_to 'Diets', admin_user_diets_path(@user) %> |
-<%= link_to 'Evaluations',  admin_user_evaluations_path(@user) %> |
-<%= link_to 'Measurements', admin_user_measurements_path(@user) %> |
-<%= link_to 'Weights',  admin_user_weights_path(@user) %> |
-<%= link_to 'Workouts', admin_user_workouts_path(@user) %> |
-
-<%= link_to 'Edit', edit_admin_user_path(@user) %> 
-
+<div class="uk-child-width-1-3@s" uk-grid>
+  <% [ 
+      ['Editar', edit_admin_user_path(@user)],
+      ['Dietas', admin_user_diets_path(@user)],
+      ['Evaluaciones', admin_user_evaluations_path(@user)],
+      ['Medidas', admin_user_measurements_path(@user)],
+      ['Pesos', admin_user_weights_path(@user)],
+      ['Workouts', admin_user_workouts_path(@user)]
+    ].each do |link_url| %>
+      <div>
+        <%= link_to link_url[1], class:"uk-card uk-card-default uk-card-small uk-card-hover uk-card-body uk-link-reset uk-text-center" do %>
+            <h3 class="uk-card-title"><%= link_url[0] %></h3>
+        <% end %>
+      </div>
+    <% end %>
+</div>

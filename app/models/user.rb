@@ -17,6 +17,10 @@ class User < ApplicationRecord
   # Callbacks
   before_save :set_default_avatar
 
+  # Validation
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :name, presence: true
+
   # Attributes
   def nickname
     full_name.present? ? full_name : email

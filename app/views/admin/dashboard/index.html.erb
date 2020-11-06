@@ -1,5 +1,4 @@
-<h1 class="uk-heading-divider">Panel de Administración</h1>
-
+<%= render partial: "shared/headers/profile_header", locals: {section_name: "Panel de Administración"}  %>
 <div class="uk-child-width-1-3@m uk-grid-match" uk-grid>
     <% [
         ['Usuarios', "Acceso al sistema de gestion de usuarios.", admin_users_path],

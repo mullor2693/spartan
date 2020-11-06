@@ -2,10 +2,11 @@ module Imageable extend ActiveSupport::Concern
 
     def self.sizes
     { 
-        small: { resize: "15x15" },
-        thumb: { resize: "35x35" },
-        normal: { resize: "50x50" },
-        big: { resize: "100x100" },
+        tiny: { resize: "35x35" },
+        small: { resize: "50x50" },
+        thumb: { resize: "75x75" },
+        normal: { resize: "100x100" },
+        big: { resize: "200x200" }
     }
     end
 

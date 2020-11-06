@@ -1,5 +1,10 @@
-<h1 class="uk-heading-divider">New User</h1>
-
+<h1 class="uk-heading-divider">
+    <%= link_to "", admin_users_path, :"uk-icon" => "chevron-left", class: "uk-icon" %>     
+    Crear Usuario
+    <input type="submit" form="admin_user_form" value="Guardar" data-disable-with="Guardando..." class="uk-button uk-button-default uk-align-right uk-visible@s">
+</h1>
 <%= render 'form', user: @user %>
 
-<%= link_to 'Back', admin_users_path %>
+<div class="uk-margin">
+    <input type="submit" form="admin_user_form" value="Guardar" data-disable-with="Guardando..." class="uk-button uk-button-default uk-width-1-1 uk-hidden@s">
+</div>

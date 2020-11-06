@@ -1,8 +1,7 @@
-<h1 class="uk-heading-divider">Dashboard</h1>
+<%= render partial: "shared/headers/profile_header", locals: {section_name: "Inicio"}  %>
 
 <div class="uk-child-width-1-3@m uk-grid-match" uk-grid>
     <% [
-      ['Perfil', "Acceso al prefil de usuario.", profile_path],
       ['Nutrición', "Acceso al servicio de nutrición.", nutrition_path],
       ['Físico', "Acceso al servicio de mediciones y evaluaciones.", physical_path],
       ['Entrenamiento', "Acceso al servicio de entrenamientos.", training_path]

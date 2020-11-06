@@ -9,11 +9,26 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body class="uk-height-1-1">
-    <div class="uk-vertical-align uk-text-center uk-height-1-1">
+  <body class="login uk-cover-container uk-background-secondary uk-flex uk-flex-center uk-flex-middle uk-height-viewport uk-overflow-hidden uk-light" data-uk-height-viewport="" style="min-height: calc(100vh);">
+		<!-- overlay -->
+		<div class="uk-position-cover uk-overlay-primary"></div>
+		<!-- /overlay -->
+		<div class="uk-position-bottom-center uk-position-small uk-visible@m uk-position-z-index">
+			<span class="uk-text-small uk-text-muted">© 2020 Spartan</span>
+		</div>
+		<div class="uk-width-medium uk-padding-small uk-position-z-index uk-scrollspy-inview uk-animation-fade" uk-scrollspy="cls: uk-animation-fade" style="">
+			
+			<div class="uk-text-center uk-margin">
+        <%= image_tag "app/logo4", alt:"Logo"%>
+			</div>
+
       <%= yield %>
-    </div>
-  </body>
+      
+		</div>
+
+    
+	
+</body>
 </html>
 
 <% unless flash.empty? %>
