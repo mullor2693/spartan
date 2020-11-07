@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="uk-height-1-1">
+<html>
   <head>
     <title>Spartan</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,42 +10,21 @@
     <%= javascript_pack_tag 'custom', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="uk-height-1-1">
+  <body class="">
     <% if current_user.present? %>
       <%= render 'shared/navbars/navbar' %>
     <% end %>
-    <div class="uk-height-1-1 tm-main uk-section uk-section-default">
-      <div class="uk-height-1-1 uk-container uk-container-small uk-position-relative">
+    <div class="tm-main uk-section uk-section-default">
+      <div class="uk-container uk-container-small uk-position-relative">
         <%= yield %>
       </div>
       <%#= render partial: "shared/navbars/navbar_bottom" %>
     </div>
     <%= render 'shared/modal' %>
   </body>
-  <div id="loading" class="load3 uk-position-cover uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
-    <div class="loader"></div>
-    <%= image_tag "app/logo2", alt:"Loading...", height: '32', width: '32', class: "uk-position-center"%>
-  </div>
+  <%= render 'shared/loader' %>
 </html>
 
-<script>
-  // Spinner on AJAX
-  $(document).ajaxStart(function(){
-    $("#loading").show();
-  });
-  // hide spinner on AJAX stop
-  $(document).ajaxStop(function(){
-    $("#loading").delay(3000).hide();
-  });
-
-  //Spinner on Turbolinks
-  $(document).on("turbolinks:click", function(){
-    $("#loading").show();
-  });
-  $(document).on("turbolinks:load", function(){
-    $("#loading").delay(3000).hide();
-  });
-</script>
 
 <% unless flash.empty? %>
    <script type="text/javascript">

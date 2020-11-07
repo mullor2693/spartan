@@ -1,0 +1,23 @@
+<div id="loading" class="load3 uk-position-cover uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
+    <div class="loader"></div>
+    <%= image_tag "app/logo2", alt:"Loading...", height: '32', width: '32', class: "uk-position-center"%>
+</div>
+
+<script>
+  // Spinner on AJAX
+  $(document).ajaxStart(function(){
+    $("#loading").show();
+  });
+  // hide spinner on AJAX stop
+  $(document).ajaxStop(function(){
+    $("#loading").delay(3000).hide();
+  });
+
+  //Spinner on Turbolinks
+  $(document).on("turbolinks:click", function(){
+    $("#loading").show();
+  });
+  $(document).on("turbolinks:load", function(){
+    $("#loading").delay(3000).hide();
+  });
+</script>
