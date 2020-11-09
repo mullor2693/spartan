@@ -1,23 +1,26 @@
-<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+<div class="navbar-container" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+
     <nav class="uk-navbar-container head-navbar" uk-navbar>
         <div class="uk-navbar-left">
-            <%= link_to authenticated_root_path, class: "uk-navbar-item uk-logo" do %>
-            <%= image_tag "app/logo4.png" %>
-            Spartan
-            <% end %>
-            <ul class="uk-navbar-nav">...</ul>
-            <div class="uk-navbar-item">...</div>
+            <a href="#menu" class="uk-navbar-item uk-logo uk-hidden@m" uk-toggle>
+                <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="navbar-toggle-icon">
+                    <rect y="9" width="20" height="2"></rect>
+                    <rect y="3" width="20" height="2"></rect>
+                    <rect y="15" width="20" height="2"></rect>
+                </svg>
+            </a>
+            <div class="uk-navbar-item uk-logo uk-visible@m">
+                <%= image_tag "app/logo4.png" %> Spartan
+            </div>
         </div>
-
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
                 <li>
                     <a href="#">
-                        <%= image_tag current_user.avatar.attached? ? current_user.avatar_sized(:small) : "users/avatar.png", class:"uk-border-circle"%>
+                        <%= image_tag current_user.avatar_sized(:small), class:"uk-border-circle"%>
                     </a>
-                    <div class="uk-navbar-dropdown">
+                    <div class="uk-navbar-dropdown" uk-dropdown="mode: click">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
-                        
                             <li><%= link_to profile_path do %><span class="uk-margin-right" uk-icon="user"></span>Perfil<% end %></li>
                             <li><%= link_to profile_path do %><span class="uk-margin-right" uk-icon="settings"></span> Ajustes<% end %></li>
                             <li class="uk-nav-divider"></li>
@@ -26,7 +29,10 @@
                     </div>
                 </li>
             </ul>
-
         </div>
     </nav>
+</div>
+
+<div class="tm-sidebar-left uk-visible@m">
+    <%= render "shared/navbars/navbar_left_content" %>
 </div>

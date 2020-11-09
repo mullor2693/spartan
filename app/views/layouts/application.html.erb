@@ -12,15 +12,25 @@
 
   <body class="">
     <% if current_user.present? %>
-      <%= render 'shared/navbars/navbar' %>
+      <%= render 'shared/navbars/admin_navbar' %>
+    <% else %>
+      <%= render 'shared/navbars/guest_navbar' %>
     <% end %>
-    <div class="tm-main uk-section uk-section-default">
-      <div class="uk-container uk-container-small uk-position-relative">
-        <%= yield %>
+    <div class="tm-main">
+      <% if current_user.present? %>
+        <%= render 'shared/navbars/breadcrumbs' %>
+      <% end %>
+      <div class="uk-margin">
+        <div class="uk-container uk-position-relative">
+          <%= yield %>
+        </div>
       </div>
       <%#= render partial: "shared/navbars/navbar_bottom" %>
     </div>
-    <%= render 'shared/modal' %>
+    <% if current_user.present? %>
+      <%= render 'shared/modal' %>
+      <%= render 'shared/canvas/menu' %>
+    <% end %>
   </body>
   <%= render 'shared/loader' %>
 </html>

@@ -27,7 +27,10 @@
       <%= form.text_field :address, class: (user.errors[:address].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Dirección" %>
     </div>
     <% unless user.new_record? %>
-      <div class="uk-width-1-1">
+      <div class="uk-width-1-3@s">
+        <%= form.collection_select(:role_ids, Role.all, :id, :name, {include_blank: ''},{ class: "uk-input"}) %>
+      </div>
+      <div class="uk-width-1-3">
         <div uk-form-custom>
           <%= form.file_field :avatar %>
           <button class="uk-button uk-button-default" type="button" tabindex="-1">Avatar</button>

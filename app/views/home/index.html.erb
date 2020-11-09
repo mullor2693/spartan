@@ -1,5 +1,1 @@
-<h1 class="uk-heading-divider"> Home<%= link_to 'Login', new_user_session_path, class:"uk-button uk-button-default uk-align-right" %></h1>
-<% unless current_user.nil? %>
-	<%= link_to authenticated_root_path, class: 'login-button' do %>Go to App<% end %>
-	<%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %>
-<% end %>
+<h1 class="uk-heading-divider"> Home</h1>

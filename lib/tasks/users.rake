@@ -8,7 +8,7 @@ namespace :users do
         user_created = 0
         getter_user = { email: Faker::Internet.email(domain: 'spartan.admin'), password: "password", name: Faker::Name.first_name, surname: Faker::Name.last_name }
         puts "----------------------------------------"
-        puts "CREATE USERS"
+        puts "CREATE ADMINS"
         puts "----------------------------------------\n"
         (1...5).each do 
             user_count+=1
@@ -17,8 +17,11 @@ namespace :users do
             user = User.find_by_email(getter_user[:email])
             if !user.present?
                 puts "Create new user!"
+                if User.all.count == 0
+                    getter_user[:email] = "first@test.com"
+                end
                 user = User.create(getter_user)
-                user.roles << Role.find(1) if Role.find_by(id: 1).present?
+                user.roles << Role.first if Role&.first.present?
                 user_created+=1
             end
         end
@@ -42,12 +45,12 @@ namespace :users do
             random_name = ('a'..'z').to_a.shuffle[0,8].join
             getter_user = {}
             getter_user[:name] = Faker::Name.first_name
-            getter_user[:surname] = Faker::Name.last_name
+            getter_user[:surname] = Faker::Name.last_name + " " + Faker::Name.last_name
             getter_user[:email] = Faker::Internet.email(domain: 'spartan.test')
             getter_user[:password] = "password"
-            getter_user[:birth_date] = Date.today - rand(18...60).years - rand(0...12).months - rand(0...30).days
+            getter_user[:birth_date] = Date.today - rand(20...50).years - rand(0...12).months - rand(0...30).days
             getter_user[:dni] = rand(10000000...99999999).to_s + ('A'...'Z').to_a.shuffle[0,1].join
-            getter_user[:address] = ('a'..'z').to_a.shuffle[0,3].join.capitalize + " " + ('a'..'z').to_a.shuffle[0,8].join.capitalize + " " + ('a'..'z').to_a.shuffle[0,5].join.capitalize
+            getter_user[:address] = Faker::Address.full_address
             getter_user[:phone] = rand(600000000...800000000)
             getter_user[:desired_weight] = rand(70...80)
             getter_user[:height] = rand(130...200)

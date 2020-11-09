@@ -1,5 +1,6 @@
 class Admin::UsersController < Admin::ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  add_breadcrumb "Usuarios", :admin_users_path
 
   # GET /users
   # GET /users.json
@@ -11,6 +12,7 @@ class Admin::UsersController < Admin::ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    add_breadcrumb @user.full_name, admin_user_path(@user)
   end
 
   # GET /users/new
@@ -70,6 +72,6 @@ class Admin::UsersController < Admin::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email, :password, :name, :surname, :birth_date, :dni, :address, :phone, :sex, :height, :weight, :desired_weight, :avatar)
+      params.require(:user).permit(:email, :password, :name, :surname, :birth_date, :dni, :address, :phone, :sex, :height, :weight, :desired_weight, :avatar, :role_ids)
     end
 end

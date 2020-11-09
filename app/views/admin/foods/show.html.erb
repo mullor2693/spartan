@@ -1,4 +1,4 @@
-<h1 class="uk-heading-divider"><%= link_to "", admin_nutrition_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> <%= @food.name %><%= link_to 'Editar Alimento', edit_admin_food_path(@food), class:"uk-button uk-button-default uk-align-right" %></h1>
+<h1 class="uk-heading-divider"><%= link_to "", admin_foods_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> <%= @food.name %><%= link_to 'Editar Alimento', edit_admin_food_path(@food), class:"uk-button uk-button-default uk-align-right" %></h1>
 
 <% Food::COMPONENT_GROUPS.each do |key, name| %>
   <% if @food.food_nutrients.by_component_group(key).present? %>

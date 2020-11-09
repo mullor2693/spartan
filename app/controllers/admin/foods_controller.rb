@@ -1,5 +1,7 @@
 class Admin::FoodsController < Admin::ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
+  add_breadcrumb "Nutrición", :admin_nutrition_path
+  add_breadcrumb "Alimentos", :admin_foods_path
 
   # GET /foods
   # GET /foods.json
@@ -10,11 +12,7 @@ class Admin::FoodsController < Admin::ApplicationController
   # GET /foods/1
   # GET /foods/1.json
   def show
-  end
-
-  # GET /foods/1
-  # GET /foods/1.json
-  def show
+    add_breadcrumb @food.name, admin_food_path(@food)
   end
 
   # GET /foods/new

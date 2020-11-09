@@ -1,5 +1,6 @@
 class Admin::ApplicationController < ApplicationController
     before_action :authenticate_admin
+    add_breadcrumb "Admin", :admin_authenticated_root_path
 
     private
 

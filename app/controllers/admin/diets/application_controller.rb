@@ -1,5 +1,6 @@
 class Admin::Diets::ApplicationController < Admin::ApplicationController
     before_action :get_diet
+    add_breadcrumb "Nutrición", :admin_nutrition_path
 
     private
 

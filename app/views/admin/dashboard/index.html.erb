@@ -1,4 +1,4 @@
-<%= render partial: "shared/headers/profile_header", locals: {section_name: "Panel de Administración"}  %>
+<%#= render partial: "shared/headers/profile_header", locals: {section_name: "Panel de Administración"}  %>
 <div class="uk-child-width-1-3@m uk-grid-match" uk-grid>
     <% [
         ['Usuarios', "Acceso al sistema de gestion de usuarios.", admin_users_path],
@@ -12,13 +12,4 @@
         <% end %>
         </div>
     <% end %>
-
-    <div>
-        <%= link_to authenticated_root_path, class:"uk-card uk-card-primary uk-card-hover uk-card-body uk-link-reset" do %>
-        <h3 class="uk-card-title">Menu Principal</h3>
-        <p>Acceso al servicio de usuario de la app.</p>
-        <% end %>
-    </div>
-
 </div>
-

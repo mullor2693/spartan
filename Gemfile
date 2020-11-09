@@ -65,3 +65,6 @@ gem "chartkick"
 
 # Gem for searching ActiveRecord models
 gem 'ransack', github: 'activerecord-hackery/ransack'
+
+# Add breadcrumbs
+gem "breadcrumbs_on_rails"
