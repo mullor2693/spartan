@@ -27,8 +27,8 @@ class Admin::Diets::Meals::MealFoodsController < Admin::Diets::Meals::Applicatio
     @meal_food = @meal_foods.new(meal_food_params)
     respond_to do |format|
       if @meal_food.save
-        format.html { redirect_to [@diet, @meal, @meal_food], notice: 'Meal food was successfully created.' }
-        format.json { render :show, status: :created, location: [@diet, @meal, @meal_food] }
+        format.html { redirect_to [:admin, @diet, @meal, @meal_food], notice: 'Meal food was successfully created.' }
+        format.json { render :show, status: :created, location: [:admin, @diet, @meal, @meal_food] }
       else
         format.html { render :new }
         format.json { render json: @meal_food.errors, status: :unprocessable_entity }
@@ -41,8 +41,8 @@ class Admin::Diets::Meals::MealFoodsController < Admin::Diets::Meals::Applicatio
   def update
     respond_to do |format|
       if @meal_food.update(meal_food_params)
-        format.html { redirect_to [@diet, @meal, @meal_food], notice: 'Meal food was successfully updated.' }
-        format.json { render :show, status: :ok, location: [@diet, @meal, @meal_food] }
+        format.html { redirect_to [:admin, @diet, @meal, @meal_food], notice: 'Meal food was successfully updated.' }
+        format.json { render :show, status: :ok, location: [:admin, @diet, @meal, @meal_food] }
       else
         format.html { render :edit }
         format.json { render json: @meal_food.errors, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class Admin::Diets::Meals::MealFoodsController < Admin::Diets::Meals::Applicatio
   def destroy
     @meal_food.destroy
     respond_to do |format|
-      format.html { redirect_to diet_meal_path(@diet, @meal), notice: 'Meal food was successfully destroyed.' }
+      format.html { redirect_to admin_diet_meal_path(@diet, @meal), notice: 'Meal food was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,7 +68,7 @@ class Admin::Diets::Meals::MealFoodsController < Admin::Diets::Meals::Applicatio
 
     def set_meal_food
       @meal_food = @meal_foods.find_by(id: params[:id])
-      redirect_to diet_meal_path(@diet, @meal), alert: 'Meal food not found on the meal.' if @meal_food.blank?
+      redirect_to admin_diet_meal_path(@diet, @meal), alert: 'Meal food not found on the meal.' if @meal_food.blank?
     end
 
     # Only allow a list of trusted parameters through.

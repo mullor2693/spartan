@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_01_221150) do
+ActiveRecord::Schema.define(version: 2020_11_10_022242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 2020_11_01_221150) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "diet_meals", force: :cascade do |t|
+    t.bigint "diet_id", null: false
+    t.bigint "meal_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["diet_id"], name: "index_diet_meals_on_diet_id"
+    t.index ["meal_id"], name: "index_diet_meals_on_meal_id"
   end
 
   create_table "diets", force: :cascade do |t|
@@ -124,11 +133,9 @@ ActiveRecord::Schema.define(version: 2020_11_01_221150) do
 
   create_table "meals", force: :cascade do |t|
     t.string "name"
-    t.bigint "diet_id", null: false
     t.integer "daytime"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["diet_id"], name: "index_meals_on_diet_id"
   end
 
   create_table "measurements", force: :cascade do |t|
@@ -254,6 +261,8 @@ ActiveRecord::Schema.define(version: 2020_11_01_221150) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "diet_meals", "diets"
+  add_foreign_key "diet_meals", "meals"
   add_foreign_key "diets", "users"
   add_foreign_key "evaluations", "users"
   add_foreign_key "exercise_workouts", "exercises"
@@ -262,7 +271,6 @@ ActiveRecord::Schema.define(version: 2020_11_01_221150) do
   add_foreign_key "food_nutrients", "nutrients"
   add_foreign_key "meal_foods", "foods"
   add_foreign_key "meal_foods", "meals"
-  add_foreign_key "meals", "diets"
   add_foreign_key "measurements", "users"
   add_foreign_key "user_diets", "diets"
   add_foreign_key "user_diets", "users"

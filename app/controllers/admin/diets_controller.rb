@@ -2,7 +2,7 @@ class Admin::DietsController < Admin::ApplicationController
   before_action :set_diets
   before_action :set_diet, only: [:show, :edit, :update, :destroy]
   add_breadcrumb "Nutrición", :admin_nutrition_path
-  add_breadcrumb "Dietas", :admin_foods_path
+  add_breadcrumb "Dietas", :admin_diets_path
 
   # GET /diets
   # GET /diets.json
@@ -12,7 +12,7 @@ class Admin::DietsController < Admin::ApplicationController
   # GET /diets/1
   # GET /diets/1.json
   def show
-    add_breadcrumb @diet.name, admin_diets_path(@diet)
+    add_breadcrumb @diet.name, admin_diet_path(@diet)
   end
 
   # GET /diets/new
@@ -22,6 +22,7 @@ class Admin::DietsController < Admin::ApplicationController
 
   # GET /diets/1/edit
   def edit
+    add_breadcrumb @diet.name, admin_diet_path(@diet)
   end
 
   # POST /diets
@@ -30,8 +31,8 @@ class Admin::DietsController < Admin::ApplicationController
     @diet = @diets.new(diet_params)
     respond_to do |format|
       if @diet.save
-        format.html { redirect_to @diet, notice: 'Diet was successfully created.' }
-        format.json { render :show, status: :created, location: @diet }
+        format.html { redirect_to [:admin, @diet], notice: 'Diet was successfully created.' }
+        format.json { render :show, status: :created, location: [:admin, @diet] }
       else
         format.html { render :new }
         format.json { render json: @diet.errors, status: :unprocessable_entity }
@@ -42,10 +43,11 @@ class Admin::DietsController < Admin::ApplicationController
   # PATCH/PUT /diets/1
   # PATCH/PUT /diets/1.json
   def update
+    debugger
     respond_to do |format|
       if @diet.update(diet_params)
-        format.html { redirect_to @diet, notice: 'Diet was successfully updated.' }
-        format.json { render :show, status: :ok, location: @diet }
+        format.html { redirect_to [:admin, @diet], notice: 'Dieta actualizada con éxito.' }
+        format.json { render :show, status: :ok, location: [:admin, @diet] }
       else
         format.html { render :edit }
         format.json { render json: @diet.errors, status: :unprocessable_entity }
@@ -58,7 +60,7 @@ class Admin::DietsController < Admin::ApplicationController
   def destroy
     @diet.destroy
     respond_to do |format|
-      format.html { redirect_to diets_url, notice: 'Diet was successfully destroyed.' }
+      format.html { redirect_to admin_diets_url, notice: 'Diet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

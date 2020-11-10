@@ -1,9 +1,9 @@
 module Weekable extend ActiveSupport::Concern
 
-    WEEKDAYS = (1..7).collect {|weekday| [Date::DAYNAMES[weekday%7], weekday ] }
+    WEEKDAYS = (1..7).collect {|weekday| [I18n.t('date.day_names')[weekday%7].capitalize, weekday ] }
 
     def name_weekday(weekday)
-        Date::DAYNAMES[weekday.to_i%7]
+        I18n.t('date.day_names')[weekday.to_i%7].capitalize
     end
 
     def list_weekdays

@@ -4,7 +4,8 @@ class Diet < ApplicationRecord
   alias_attribute :creator, :user
 
   belongs_to :user
-  has_many :meals
+  has_many :diet_meals
+  has_many :meals, through: :diet_meals
 
   before_validation :clean_weekdays
 

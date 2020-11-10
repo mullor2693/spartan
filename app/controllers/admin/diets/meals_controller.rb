@@ -25,7 +25,6 @@ class Admin::Diets::MealsController < Admin::Diets::ApplicationController
   # POST /meals
   # POST /meals.json
   def create
-    debugger
     @meal = @meals.new(meal_params)
     respond_to do |format|
       if @meal.save
@@ -67,6 +66,8 @@ class Admin::Diets::MealsController < Admin::Diets::ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_diet_meals
       @meals = @diet.meals
+      add_breadcrumb @diet.name, admin_diet_path(@diet)
+      add_breadcrumb "Comida", request.url
     end
 
     def set_meal

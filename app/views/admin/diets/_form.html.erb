@@ -1,4 +1,5 @@
-<%= form_with(model: diet, local: true) do |form| %>
+<%= form_with(model: [:admin, diet], local: true) do |form| %>
+
   <% if diet.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(diet.errors.count, "error") %> prohibited this diet from being saved:</h2>
@@ -10,23 +11,24 @@
       </ul>
     </div>
   <% end %>
+    <fieldset class="uk-fieldset">
+    <div class="uk-margin">
+      <%= form.text_field :name, class: "uk-input" %>
+    </div>
+    
+    <div class="uk-margin">
+      <%= form.text_area :description, class: "uk-input" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <div class="uk-margin uk-grid-small uk-child-width-1-1 uk-child-width-auto@s uk-grid">
+        <% Weekable::WEEKDAYS.each do |wd| %>
+          <label><%= check_box( :diet, :weekdays, { multiple: true, class: "uk-checkbox", checked: diet.weekdays.include?(wd.last.to_s) }, wd.last, nil) %> <%= wd.first.to_s %></label>
+        <% end %>
+    </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div> 
-
-  <div class="field">
-    <%= form.label :weekdays %>
-    <%= select(diet.model_name.singular, :weekdays, Weekable::WEEKDAYS, {}, { multiple: true }) %>
-  </div>
+  </fieldset>
   
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Guardar", class: "uk-button uk-button-default" %>
   </div>
 <% end %>
