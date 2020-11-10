@@ -7,7 +7,7 @@
       ['Entrenamiento', "Acceso al servicio de entrenamientos.", training_path]
     ].each do |link_url| %>
         <div>
-          <%= link_to link_url[2], class:"uk-card uk-card-default uk-card-hover uk-card-body uk-link-reset" do %>
+          <%= link_to link_url[2], class:"uk-card uk-card-hover uk-card-body uk-link-reset" do %>
             <h3 class="uk-card-title"><%= link_url[0] %></h3>
             <p><%= link_url[1] %></p>
           <% end %>
@@ -16,7 +16,7 @@
 
     <% if @current_user.is_admin? %>
       <div>
-        <%= link_to admin_authenticated_root_path, class:"uk-card uk-card-primary uk-card-hover uk-card-body uk-link-reset" do %>
+        <%= link_to admin_authenticated_root_path, class:"uk-card uk-card-hover uk-card-body uk-link-reset" do %>
           <h3 class="uk-card-title">Administración</h3>
           <p>Acceso al servicio de administracion de la app.</p>
         <% end %>

@@ -16,3 +16,9 @@
 @import 'variables';
 @import 'login';
 @import 'theme';
+
+/*
+ * Set html to 100% height
+ */
+html { height: 100%; }
+body { min-height: 100%; }

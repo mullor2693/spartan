@@ -9,29 +9,19 @@
 </p>
 
 <p>
-  <strong>Food Components:</strong>
   <% Food::COMPONENT_GROUPS.each do |key, name| %>
-    <br/>
-    <% empty_group = true %>
-    <table>
-      <thead>
-        <tr>
-          <th><%= name %></th>
-          <th>Cantidad (100g)</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody> 
-        <% @meal_food.food.components.each do |component| %>
-          <% if component["component_group"] == key %>
-            <tr><td><%= component["name"] %></td><td><%= "#{component["quantity"]} #{component["unit"]}" %></td></tr>
-            <% empty_group = false %>
-          <% end %>
-        <% end %>
-        <% if empty_group %>
-          <tr><td colspan="2">No hay componentes para esta categoria</td></tr> 
-        <% end %>
-      </tbody>
-    </table>
+    <% if @meal_food.food.food_nutrients.by_component_group(key).present? %>
+      <dl class="uk-description-list uk-margin-medium-bottom">
+        <dt><strong><%= name %></strong></dt>
+      <% @meal_food.food.food_nutrients.by_component_group(key).each do |fn| %>
+        <dd>
+          <div class="uk-grid-small uk-text-left uk-margin-small-top" uk-grid>
+            <div class="uk-width-expand" uk-leader><%= fn&.nutrient&.name&.capitalize %></div>
+            <div><%= "#{fn&.quantity} #{fn&.unit}" %></div>
+          </div>
+        </dd>
+      <% end %>
+      </dl>
+    <% end %>
   <% end %>
 </p>

@@ -1589,6 +1589,7 @@ select.uk-form-width-xsmall{
 }
 .uk-card-default{
     background:#fff;
+    background: linear-gradient(0deg, #ffffff, #f6f6f6);
     color:#666;
     box-shadow:0 5px 15px rgba(0,0,0,0.08)
 }
@@ -6949,6 +6950,10 @@ body{
     width: 75px !important;
     height: 75px !important;
 }
+.square-200 {
+    width: 200px !important;
+    height: 200px !important;
+}
 
 .uk-card-secondary {
     background: #c40000;
@@ -6960,9 +6965,34 @@ body{
 }
 
 .user-list-card {
+    border: 1px solid #76767612;
     img {
         background-color: #ffffff;
         background: linear-gradient(0deg, #dadadaa1, #ffffff);
-        border: 3px solid #b50000db;  
+        border: 3px solid #b50000db;
+        border: 4px solid #b50000db;
+        background-image: image-url('app/logo2.png'); 
+        background-repeat: no-repeat;    
+        background-size: 67px 66px; 
     }
+}
+
+.user-profile-card {
+    border: 4px solid #76767612;
+    max-width: 350px;
+    min-width: 275px;
+    img {
+        background-color: #ececec69;
+        background: linear-gradient(0deg, #dadadaa1, #ffffff);
+        border: 4px solid #b50000db;
+        background-image: image-url('app/logo2.png'); 
+        background-repeat: no-repeat;    
+        background-size: 192px 192px;
+    }
+}
+
+hr.navbar-top { 
+    margin-top: 12px;
+    box-shadow: 0px 2px 6px -1px #0000009e;
+    border-top: 3px solid #c40000;
 }

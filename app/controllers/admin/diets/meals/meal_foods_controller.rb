@@ -1,5 +1,5 @@
 class Admin::Diets::Meals::MealFoodsController < Admin::Diets::Meals::ApplicationController
-  before_action :set_diet_meal_foods
+  before_action :set_meal_meal_foods
   before_action :set_meal_food, only: [:show, :edit, :update, :destroy]
 
   # GET /meal_foods
@@ -62,7 +62,7 @@ class Admin::Diets::Meals::MealFoodsController < Admin::Diets::Meals::Applicatio
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user_meal_foods
+    def set_meal_meal_foods
       @meal_foods = @meal.meal_foods
     end
 

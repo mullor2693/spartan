@@ -6,7 +6,7 @@
         ['Ejercicios', "Acceso al listado de ejercicios.", admin_exercises_path]
     ].each do |link_url| %>
         <div>
-        <%= link_to link_url[2], class:"uk-card uk-card-default uk-card-hover uk-card-body uk-link-reset" do %>
+        <%= link_to link_url[2], class:"uk-card uk-card-hover uk-card-body uk-link-reset" do %>
             <h3 class="uk-card-title"><%= link_url[0] %></h3>
             <p><%= link_url[1] %></p>
         <% end %>
