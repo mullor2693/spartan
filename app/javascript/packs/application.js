@@ -3,8 +3,8 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-const UIkit = require('uikit')
-const Icons = require("packs/uikit-icons")
+global.UIkit = require('uikit')
+global.Icons = require("packs/uikit-icons")
 
 UIkit.use(Icons);
 

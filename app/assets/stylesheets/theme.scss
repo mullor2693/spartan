@@ -6930,6 +6930,9 @@ body{
 }
 
 }
+
+
+
 .list-link {
     li {
         margin-bottom: 10px !important;
@@ -6995,4 +6998,13 @@ hr.navbar-top {
     margin-top: 12px;
     box-shadow: 0px 2px 6px -1px #0000009e;
     border-top: 3px solid #c40000;
+}
+
+.admin-navbar {
+    z-index: 1100;
+}
+
+.uk-offcanvas-bar.edition-canvas {
+    margin-top: 80px;
+    box-shadow: 0px 0px 10px -5px #000000
 }

@@ -1,15 +1,11 @@
 <h1 class="uk-heading-divider"><%= link_to "", admin_diets_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> <%= @diet.name %><%= link_to 'Editar Dieta', edit_admin_diet_path(@diet), class:"uk-button uk-button-default uk-align-right" %></h1>
 
-<div class="uk-margin-medium" uk-grid>
+<div class="uk-width-1-1 uk-margin-medium" uk-grid>
 
-    <div class="uk-width-1-1 uk-width-auto@s">
-      <div class="uk-card uk-card-large uk-card-default uk-card-body">
+    <div class="uk-width-auto uk-width-1-2@s uk-width-1-3@l">
+      <div class="uk-card uk-card uk-card-secondary uk-card-body uk-text-center">
         <h3><%= @diet.name %></h3>
-        <p>
-          <strong>Descripción:</strong>
-          <%= @diet.description %>
-        </p>
-
+        <p><%= @diet.description %></p>
         <p>
           <strong>Dias aplicados:</strong>
           <%= @diet.weekdays_sentence %>
@@ -17,21 +13,21 @@
       </div>
     </div>
 
-    <div class="uk-width-expand">
+    <div class="uk-width-1-1 uk-width-1-2@s uk-width-2-3@l">
 
       <ul class="uk-list uk-list-divider">
-        <% @diet.meals.each do |meal| %>
+        <% @diet.diet_meals.each do |dm| %>
         <li class="uk-flex">
           <div class="uk-width-1-1 uk-width-expand">
-            <%= meal.name %>
+            <%= dm.meal.name %>
           </div>
           <div class="uk-width-1-1 uk-width-auto@s uk-margin-small-left">
-            <%= meal.name_daytime %>
+            <%= dm.meal.name_daytime %>
           </div>
           <div class="uk-width-1-1 uk-width-auto@s uk-margin-left">
             <ul class="uk-iconnav">
-              <li><%= link_to '', [:admin, @diet, meal], :'uk-icon' => "icon: file-edit" %></li>
-              <li><%= link_to '', [:admin, @diet, meal], method: :delete, data: { confirm: 'Estas seguro?' }, :'uk-icon' => "icon: trash" %></li>
+              <li><%= link_to '', [:admin, @diet, dm.meal], :'uk-icon' => "icon: file-edit" %></li>
+              <li><%= link_to '', [:admin, @diet, dm], method: :delete, data: { confirm: 'Estas seguro?' }, :'uk-icon' => "icon: trash" %></li>
             </ul>
           </div>
         </li>
@@ -41,17 +37,6 @@
 
 </div>
 
-<%= form_with(model: [:admin, @diet], local: true, class: "uk-flex uk-width-1-1") do |form| %>
-  <div class="uk-width-3-4">
-    <%= form.fields_for :diet_meals, @diet.diet_meals.build do |dm__fields| %>
-      <p><%= dm__fields.collection_select(:meal, Meal.all-@diet.meals , :id, :name, {include_blank: ''},{ class: "uk-select"}) %></p>
-    <% end %>
-  </div>
-  <div class="uk-width-1-4">
-    <%= form.submit "Añadir Comida", class:"uk-margin-small-left uk-button uk-button-default" %>
-  </div>
-<% end %>
+<button class="uk-button uk-button-default" type="button" uk-toggle="target: #canvas-admin-diet-add-meal">Añadir Comida</button>
 
-<%= link_to 'Crear comida', new_admin_diet_meal_path(@diet), class:"uk-margin-top uk-margin-small-left uk-button uk-button-default" %>
-
-
+<%= render partial: "canvas_add_meal" %>

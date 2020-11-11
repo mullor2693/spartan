@@ -11,35 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="uk-margin">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "uk-input" %>
   </div>
 
-  <div class="field">
+  <div class="uk-margin">
     <%= form.label :daytime %>
     <%= form.collection_select(:daytime, Daytimeable::DAYTIMES.collect.with_index.to_a, :second, :first.to_s, {include_blank: ''},{ class: "uk-input"}) %>
   </div>
 
-  <%= form.fields_for :meal_foods do |mf_form| %>
-    <div class="field">
-      <%= mf_form.label :food_id %>
-      <%= mf_form.collection_select(:food_id, Food.all, :id, :name, {include_blank: ''},{ class: "uk-input"}) %>
-    </div>
-
-    <div class="field">
-      <%= mf_form.label :quantity %>
-      <%= mf_form.number_field :quantity %>
-    </div>
-
-    <div class="field">
-      <%= mf_form.label :unit %>
-      <%= mf_form.collection_select(:unit, MealFood::UNITS, :to_s, :to_s, {include_blank: ''},{ class: "uk-input"}) %>
-    </div>
-
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="uk-margin">
+    <%= form.submit "Guardar", class: "uk-button uk-button-default" %>
   </div>
 <% end %>

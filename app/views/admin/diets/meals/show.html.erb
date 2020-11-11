@@ -3,7 +3,7 @@
 <div class="uk-margin-medium" uk-grid>
 
     <div class="uk-width-1-1 uk-width-auto@s">
-      <div class="uk-card uk-card-large uk-card-default uk-card-body">
+      <div class="uk-card uk-card-large uk-card-default uk-card-body uk-text-center">
         <h3><%= @meal.name %></h3>
         <p>
           <strong>Hora del Dia:</strong>
@@ -15,7 +15,7 @@
     <div class="uk-width-expand">
 
       <ul class="uk-list uk-list-divider">
-        <% @meal.meal_foods.each do |meal_food| %>
+        <% @meal.meal_foods.where.not(id: nil).each do |meal_food| %>
         <li class="uk-flex">
           <div class="uk-width-1-1 uk-width-expand">
             <%= meal_food.food.name %>
@@ -28,15 +28,17 @@
           </div>
           <div class="uk-width-1-1 uk-width-auto@s uk-margin-left">
             <ul class="uk-iconnav">
-              <li><%= link_to '', edit_admin_diet_meal_meal_food_path(@diet, @meal, meal_food), :'uk-icon' => "icon: file-edit" %></li>
+              <li><%= link_to '', edit_admin_diet_meal_meal_food_path(@diet, @meal, meal_food), :'uk-icon' => "icon: plus" %></li>
+              <li><a class="uk-icon ajaxNew" data-link="<%= url_for edit_admin_diet_meal_meal_food_path(@diet, @meal, meal_food) %>"><span uk-icon="file-edit"></span></a>
+              </li>
               <li><%= link_to '', [:admin, @diet, @meal, meal_food], method: :delete, data: { confirm: 'Estas seguro?' }, :'uk-icon' => "icon: trash" %></li>
             </ul>
           </div>
         </li>
         <%end%>
       </ul>
-
-      <%= link_to 'Añadir alimento', new_admin_diet_meal_meal_food_path(@diet, @meal), class:"uk-margin-top uk-margin-small-left uk-button uk-button-default" %>
     </div>
 
 </div>
+
+<button class="uk-button uk-button-default ajaxNew" data-link="<%= url_for new_admin_diet_meal_meal_food_path(@diet, @meal) %>">Añadir Alimento</button>

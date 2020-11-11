@@ -25,6 +25,7 @@ class Admin::Diets::MealsController < Admin::Diets::ApplicationController
   # POST /meals
   # POST /meals.json
   def create
+    debugger
     @meal = @meals.new(meal_params)
     respond_to do |format|
       if @meal.save
@@ -40,13 +41,12 @@ class Admin::Diets::MealsController < Admin::Diets::ApplicationController
   # PATCH/PUT /meals/1
   # PATCH/PUT /meals/1.json
   def update
-    debugger
     respond_to do |format|
       if @meal.update(meal_params)
         format.html { redirect_to [:admin, @diet, @meal], notice: 'Meal was successfully updated.' }
         format.json { render :show, status: :ok, location: [:admin, @diet, @meal] }
       else
-        format.html { render :edit }
+        format.html { render :show, location: [:admin, @diet, @meal] }
         format.json { render json: @meal.errors, status: :unprocessable_entity }
       end
     end
@@ -77,6 +77,6 @@ class Admin::Diets::MealsController < Admin::Diets::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:name, :daytime, meal_foods_attributes: [:food_id, :quantity, :unit])
+      params.require(:meal).permit(:name, :daytime, :diet, meal_foods_attributes: [:food_id, :quantity, :unit])
     end
 end

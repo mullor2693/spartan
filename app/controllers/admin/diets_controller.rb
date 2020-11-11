@@ -43,7 +43,6 @@ class Admin::DietsController < Admin::ApplicationController
   # PATCH/PUT /diets/1
   # PATCH/PUT /diets/1.json
   def update
-    debugger
     respond_to do |format|
       if @diet.update(diet_params)
         format.html { redirect_to [:admin, @diet], notice: 'Dieta actualizada con éxito.' }
@@ -78,6 +77,6 @@ class Admin::DietsController < Admin::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def diet_params
-      params.require(:diet).permit(:name, :description, weekdays:[])
+      params.require(:diet).permit(:name, :description, meals_attributes: [:name], weekdays: [])
     end
 end

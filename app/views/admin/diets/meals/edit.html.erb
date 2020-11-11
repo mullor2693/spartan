@@ -1,6 +1,4 @@
-<h1 class="uk-heading-divider">Editing Meal</h1>
+<h1 class="uk-heading-divider"><%= link_to "", admin_diet_meal_path(@diet, @meal), :"uk-icon" => "chevron-left", class: "uk-icon" %> Editar Comida</h1>
 
 <%= render 'form', meal: @meal %>
 
-<%= link_to 'Show', [@diet, @meal] %> |
-<%= link_to 'Back', diet_meals_path(@diet) %>

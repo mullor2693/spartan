@@ -9,4 +9,11 @@ class Diet < ApplicationRecord
 
   before_validation :clean_weekdays
 
+  def meals_attributes=(meal_attributes)
+    meal_attributes.values.each do |meal_attribute|
+      meal = Meal.find_or_create_by(meal_attribute)
+      self.meals << meal
+    end
+  end
+
 end
