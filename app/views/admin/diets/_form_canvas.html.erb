@@ -1,0 +1,27 @@
+<button class="uk-offcanvas-close" type="button" uk-close></button>
+
+<h3><%= @diet.new_record? ? "Añadir Dieta" : "Editar Dieta"%></h3>
+
+<%= form_with(model: [:admin, @diet], local: true) do |form| %>
+
+    <fieldset class="uk-fieldset">
+    <div class="uk-margin">
+      <%= form.text_field :name, class: "uk-input" %>
+    </div>
+    
+    <div class="uk-margin">
+      <%= form.text_area :description, class: "uk-input" %>
+    </div>
+
+    <div class="uk-margin uk-grid-small uk-child-width-1-1 uk-child-width-auto@s uk-grid">
+        <% Weekable::WEEKDAYS.each do |wd| %>
+          <label><%= check_box( :diet, :weekdays, { multiple: true, class: "uk-checkbox", checked: @diet.weekdays.include?(wd.last.to_s) }, wd.last, nil) %> <%= wd.first.to_s %></label>
+        <% end %>
+    </div>
+
+  </fieldset>
+  
+  <div class="actions">
+    <%= form.submit "Guardar", class: "uk-button uk-button-default" %>
+  </div>
+<% end %>

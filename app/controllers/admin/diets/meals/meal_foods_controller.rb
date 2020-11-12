@@ -24,12 +24,11 @@ class Admin::Diets::Meals::MealFoodsController < Admin::Diets::Meals::Applicatio
   # POST /meal_foods
   # POST /meal_foods.json
   def create
-    debugger
     @meal_food = @meal_foods.new(meal_food_params)
     respond_to do |format|
       if @meal_food.save
-        format.html { redirect_to [:admin, @diet, @meal, @meal_food], notice: 'Meal food was successfully created.' }
-        format.json { render :show, status: :created, location: [:admin, @diet, @meal, @meal_food] }
+        format.html { redirect_to [:admin, @diet, @meal], notice: 'Meal food was successfully created.' }
+        format.json { render :show, status: :created, location: [:admin, @diet, @meal] }
       else
         format.html { render :new }
         format.json { render json: @meal_food.errors, status: :unprocessable_entity }
@@ -42,8 +41,8 @@ class Admin::Diets::Meals::MealFoodsController < Admin::Diets::Meals::Applicatio
   def update
     respond_to do |format|
       if @meal_food.update(meal_food_params)
-        format.html { redirect_to [:admin, @diet, @meal, @meal_food], notice: 'Meal food was successfully updated.' }
-        format.json { render :show, status: :ok, location: [:admin, @diet, @meal, @meal_food] }
+        format.html { redirect_to [:admin, @diet, @meal], notice: 'Meal food was successfully updated.' }
+        format.json { render :show, status: :ok, location: [:admin, @diet, @meal] }
       else
         format.html { render :edit }
         format.json { render json: @meal_food.errors, status: :unprocessable_entity }

@@ -1,4 +1,4 @@
-<h1 class="uk-heading-divider"><%= link_to "", admin_diet_path(@diet), :"uk-icon" => "chevron-left", class: "uk-icon" %> Comida<%= link_to 'Editar', edit_admin_diet_meal_path(@diet, @meal), class:"uk-button uk-button-default uk-align-right" %></h1>
+<h1 class="uk-heading-divider"><%= link_to "", admin_diet_path(@diet), :"uk-icon" => "chevron-left", class: "uk-icon" %> Comida<%= remote_link(edit_admin_diet_meal_path(@diet, @meal), "Editar Comida", {class: "uk-button uk-button-default uk-align-right"}) %></h1>
 
 <div class="uk-margin-medium" uk-grid>
 
@@ -28,9 +28,8 @@
           </div>
           <div class="uk-width-1-1 uk-width-auto@s uk-margin-left">
             <ul class="uk-iconnav">
-              <li><%= link_to '', edit_admin_diet_meal_meal_food_path(@diet, @meal, meal_food), :'uk-icon' => "icon: plus" %></li>
-              <li><a class="uk-icon ajaxNew" data-link="<%= url_for edit_admin_diet_meal_meal_food_path(@diet, @meal, meal_food) %>"><span uk-icon="file-edit"></span></a>
-              </li>
+              <li><%= link_to '', admin_diet_meal_meal_food_path(@diet, @meal, meal_food), :'uk-icon' => "icon: plus" %></li>
+              <li><%= remote_icon_link(edit_admin_diet_meal_meal_food_path(@diet, @meal, meal_food), "file-edit") %></li>
               <li><%= link_to '', [:admin, @diet, @meal, meal_food], method: :delete, data: { confirm: 'Estas seguro?' }, :'uk-icon' => "icon: trash" %></li>
             </ul>
           </div>
