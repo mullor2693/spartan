@@ -5,3 +5,11 @@
         <ul>
     </div>
 </nav>
+
+<script>
+    var element_count = $("ul.uk-breadcrumb li").length
+    if(element_count>=3){
+        $('ul.uk-breadcrumb li:lt('+(element_count-3)+')').remove();
+        $('ul.uk-breadcrumb li:nth-child('+(1)+') a').html('...');
+    }
+</script>

@@ -1,6 +1,6 @@
 <button class="uk-offcanvas-close" type="button" uk-close></button>
 
-<h3><%= @diet.new_record? ? "Añadir Dieta" : "Editar Dieta"%></h3>
+<h3 class="uk-margin-remove-top"><%= @diet.new_record? ? "Nueva Dieta" : "Editar Dieta"%></h3>
 
 <%= form_with(model: [:admin, @diet], local: true) do |form| %>
 
@@ -10,7 +10,7 @@
     </div>
     
     <div class="uk-margin">
-      <%= form.text_area :description, class: "uk-input", placeholder: "Descripción" %>
+      <%= form.text_area :description, class: "uk-textarea", placeholder: "Descripción" %>
     </div>
 
     <div class="uk-margin uk-grid-small uk-child-width-1-1 uk-grid">
