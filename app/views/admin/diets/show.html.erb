@@ -1,4 +1,4 @@
-<h1 class="uk-heading-divider"><%= link_to "", admin_diets_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> <%= @diet.name %><%= remote_link(edit_admin_diet_path(@diet), "Editar Dieta", {class: "uk-button uk-button-default uk-align-right"}) %></h1>
+<h1><%= link_to "", admin_diets_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> Dieta<%= remote_icon_link(edit_admin_diet_path(@diet), "file-edit", {:class=>"uk-align-right uk-margin-small-top uk-margin-small-right", :'icon-class'=>"uk-margin-auto"}) %></h1>
 
 <div class="uk-width-1-1 uk-margin-medium" uk-grid>
 

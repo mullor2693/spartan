@@ -1,13 +1,13 @@
 class Diet < ApplicationRecord
   include Weekable
 
-  alias_attribute :creator, :user
-
-  belongs_to :user
+  belongs_to :creator, foreign_key: :user_id, class_name: "User"
   has_many :diet_meals
   has_many :meals, through: :diet_meals
 
   before_validation :clean_weekdays
+
+  validates :name, :weekdays, presence: true
 
   def meals_attributes=(meal_attributes)
     meal_attributes.values.each do |meal_attribute|

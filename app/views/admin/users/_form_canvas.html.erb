@@ -1,0 +1,51 @@
+<button class="uk-offcanvas-close" type="button" uk-close></button>
+
+<h1 class="uk-heading-divider"><%= user.new_record? ? "Nuevo usuario" : "Editar Usuario"%></h1>
+
+<%= form_with(model: [:admin, user], local: true, id: "admin_user_form") do |form| %>
+  <fieldset class="uk-fieldset uk-grid-small" uk-grid>
+    <div class="uk-width-1-1">
+      <%= form.text_field :email, class: (user.errors[:email].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Correo electrónico" %>
+    </div>
+    <% if user.new_record? %>
+      <div class="uk-width-1-1">
+        <%= form.text_field :password, value: Devise.friendly_token.first(8), class:  (user.errors[:password].present? ? "uk-input uk-form-danger" : "uk-input") %>
+      </div>
+    <% end %>
+    <div class="uk-width-1-1">
+      <%= form.text_field :name, class: (user.errors[:name].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Nombre" %>
+    </div>
+    <div class="uk-width-1-1">
+      <%= form.text_field :surname, class: (user.errors[:surname].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Apellidos" %>
+    </div>
+    <div class="uk-width-1-1">
+      <%= form.text_field :dni, class: (user.errors[:dni].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "DNI" %>
+    </div>
+    <div class="uk-width-1-1">
+      <%= form.number_field :phone, class: (user.errors[:phone].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Teléfono" %>
+    </div>
+    <div class="uk-width-1-1">
+      <%= form.date_field :birth_date, class: (user.errors[:birth_date].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Fecha de nacimiento" %>
+    </div>
+    <div class="uk-width-1-1">
+      <%= form.text_field :address, class: (user.errors[:address].present? ? "uk-input uk-form-danger" : "uk-input"), placeholder: "Dirección" %>
+    </div>
+    <% unless user.new_record? %>
+      <div class="uk-width-1-1">
+        <div class="uk-width-1-1" uk-form-custom="target: true">
+            <%= form.file_field :avatar %>
+            <input class="uk-input" type="text" placeholder="Nueva foto de ferfil..." disabled>
+        </div>
+      </div>
+      <div class="uk-width-1-1">
+        <%= form.label "Rol asociados al usuario", class:"uk-form-label" %>
+        <%= form.collection_select(:role_ids, Role.all, :id, :name, {include_blank: ''},{ class: "uk-select uk-margin-small"}) %>
+      </div>
+    <% end %>
+  </fieldset>
+  <div class="uk-width-1-1 uk-margin">
+    <div class="actions">
+      <%= form.submit "Guardar", class:"uk-button uk-button-default" %>
+    </div>
+  </div>
+<% end %>

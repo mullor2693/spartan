@@ -6,14 +6,15 @@
 
     <fieldset class="uk-fieldset">
     <div class="uk-margin">
-      <%= form.text_field :name, class: "uk-input" %>
+      <%= form.text_field :name, class: "uk-input", placeholder: "Nombre" %>
     </div>
     
     <div class="uk-margin">
-      <%= form.text_area :description, class: "uk-input" %>
+      <%= form.text_area :description, class: "uk-input", placeholder: "Descripción" %>
     </div>
 
-    <div class="uk-margin uk-grid-small uk-child-width-1-1 uk-child-width-auto@s uk-grid">
+    <div class="uk-margin uk-grid-small uk-child-width-1-1 uk-grid">
+        <%= form.label "Dias aplicables", class: "uk-form-label uk-margin-small" %>
         <% Weekable::WEEKDAYS.each do |wd| %>
           <label><%= check_box( :diet, :weekdays, { multiple: true, class: "uk-checkbox", checked: @diet.weekdays.include?(wd.last.to_s) }, wd.last, nil) %> <%= wd.first.to_s %></label>
         <% end %>

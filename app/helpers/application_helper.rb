@@ -17,7 +17,8 @@ module ApplicationHelper
     
     def remote_icon_link(data_link, icon_name, options={})
         link_class = options[:class] ? "uk-icon ajaxNew #{options[:class]}" : "uk-icon ajaxNew"
-        return "<a class='#{link_class}' data-link='#{url_for data_link}'><span uk-icon='#{icon_name}'></span></a>".html_safe
+        icon_class = options[:'icon-class'] ? "#{options[:'icon-class']}" : ""
+        return "<a class='#{link_class}' data-link='#{url_for data_link}'><span class='#{icon_class}' uk-icon='#{icon_name}'></span></a>".html_safe
     end
     
 end

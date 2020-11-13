@@ -29,6 +29,7 @@ class Admin::DietsController < Admin::ApplicationController
   # POST /diets.json
   def create
     @diet = @diets.new(diet_params)
+    @diet.creator = @current_user
     respond_to do |format|
       if @diet.save
         format.html { redirect_to [:admin, @diet], notice: 'Diet was successfully created.' }
