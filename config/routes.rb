@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         resources :foods
         resources :diets do
           scope module: 'diets' do
-            resources :diet_meals, only: [:update, :destroy]
+            resources :diet_meals
             resources :meals do
               scope module: 'meals' do
                 resources :meal_foods
@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     scope 'nutrition' do
       resources :diets do
         scope module: 'diets' do
+          resources :diet_meals
           resources :meals, except: [:index] do
             scope module: 'meals' do
               resources :meal_foods, except: [:index]

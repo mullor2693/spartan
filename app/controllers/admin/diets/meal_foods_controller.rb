@@ -24,7 +24,6 @@ class Admin::Diets::MealFoodsController < Admin::Diets::ApplicationController
   # POST /meal_foods
   # POST /meal_foods.json
   def create
-    debugger
     @meal_food = @meal_foods.new(meal_food_params)
     respond_to do |format|
       if @meal_food.save

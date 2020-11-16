@@ -2,22 +2,19 @@
 
 <h3 class="uk-margin-remove-top"><%= @diet.new_record? ? "Nueva Dieta" : "Editar Dieta"%></h3>
 
-<%= form_with(model: [:admin, @diet], local: true) do |form| %>
-
-    <fieldset class="uk-fieldset">
+<%= form_with(model: [:admin, @diet], remote: true) do |form| %>
+  <% errors = @diet.errors.present? ? @diet.errors.messages : {} %>
+  <fieldset class="uk-fieldset">
     <div class="uk-margin">
-      <%= form.text_field :name, class: "uk-input", placeholder: "Nombre" %>
+      <%= form.text_field :name, class: "uk-input#{" uk-form-danger" if errors[:name].present?}", placeholder: "Nombre" %>
     </div>
     
     <div class="uk-margin">
       <%= form.text_area :description, class: "uk-textarea", placeholder: "Descripción" %>
     </div>
 
-    <div class="uk-margin uk-grid-small uk-child-width-1-1 uk-grid">
-        <%= form.label "Dias aplicables", class: "uk-form-label uk-margin-small" %>
-        <% Weekable::WEEKDAYS.each do |wd| %>
-          <label><%= check_box( :diet, :weekdays, { multiple: true, class: "uk-checkbox", checked: @diet.weekdays.include?(wd.last.to_s) }, wd.last, nil) %> <%= wd.first.to_s %></label>
-        <% end %>
+    <div class="uk-margin">
+      <%= select(@diet.model_name.singular, :weekdays, Weekable::WEEKDAYS, {}, { multiple: true, class: "uk-select#{" uk-form-danger" if errors[:weekdays].present?}" }) %>
     </div>
 
   </fieldset>

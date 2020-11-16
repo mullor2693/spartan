@@ -9217,7 +9217,7 @@ namespace :foods do
                 { name: "Energía", quantity: 149.58, unit: "kJ", component_group: 1 },
                 { name: "Grasa (lipidos)", quantity: 0.9, unit: "g", component_group: 1 },
                 { name: "Proteina", quantity: 4.3, unit: "g", component_group: 1 },
-                { name: "Agua (humedad)", quantity: 88.1, unit: "g", component_group: 1 }
+                { name: "Agua (humedad)", quantity: 88.1, unit: "g", component_group: 1 },
                 { name: "Ioduro", quantity: 4.5, unit: "ug", component_group: 7 },
                 { name: "Selenio", quantity: 1.4, unit: "ug", component_group: 7 },
                 { name: "Zinc", quantity: 0.33, unit: "mg", component_group: 7 },
@@ -39367,8 +39367,8 @@ namespace :foods do
         food = nil
         food = Food.find_by_name(getter_food[:name])
         if !food.present?
-            puts "Create new food!"
             food = Food.create(getter_food.except(:identificacion, :components))
+            puts "Comida: #{food.name}"
             getter_food[:components].each do |component|
                 nutrient = nil
                 nutrient = Nutrient.find_by_name(component[:name])
@@ -39376,9 +39376,9 @@ namespace :foods do
                     nutrient=Nutrient.create(name: component[:name], component_group: component[:component_group])
                     puts "Create new nutrient: #{nutrient.name}"
                 end
-                if component[:quantity].present && component[:quantity] > 0
+                if component[:quantity].present? && component[:quantity] > 0
                     fn = FoodNutrient.create(food: food, nutrient: nutrient, unit: component[:unit], quantity: component[:quantity])
-                    puts "Create new #{fn.food.name} asocciantion => #{fn.nutrient.name}: #{fn.quantity}#{fn.unit}"
+                    puts "#{fn.nutrient.name}: #{fn.quantity}#{fn.unit}"
                 end
             end
             food_created+=1

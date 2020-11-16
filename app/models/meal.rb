@@ -7,4 +7,7 @@ class Meal < ApplicationRecord
   has_many :foods, -> { distinct }, through: :meal_foods
   accepts_nested_attributes_for :meal_foods
 
+  validates :name, presence: true
+  validates :name, uniqueness: true
+
 end

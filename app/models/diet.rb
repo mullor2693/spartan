@@ -4,6 +4,7 @@ class Diet < ApplicationRecord
   belongs_to :creator, foreign_key: :user_id, class_name: "User"
   has_many :diet_meals
   has_many :meals, through: :diet_meals
+  accepts_nested_attributes_for :meals
 
   before_validation :clean_weekdays
 

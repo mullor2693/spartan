@@ -1,7 +1,8 @@
 class WorkoutsController < ApplicationController
   before_action :set_user_workouts
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
-
+  add_breadcrumb "Entrenamiento", :training_path
+  add_breadcrumb "Workouts", :workouts_path
   # GET /workouts
   # GET /workouts.json
   def index
@@ -25,9 +26,11 @@ class WorkoutsController < ApplicationController
   # POST /workouts.json
   def create
     @workout = @workouts.new(workout_params)
+    @workout.creator = @current_user
     respond_to do |format|
       if @workout.save
-        format.html { redirect_to [:admin, @workout, notice: 'Workout was successfully created.' }
+        UserWorkout.create(user: @current_user, workout: @workout)
+        format.html { redirect_to @workout, notice: 'Workout was successfully created.' }
         format.json { render :show, status: :created, location: @workout }
       else
         format.html { render :new }
@@ -69,7 +72,7 @@ class WorkoutsController < ApplicationController
 
     def set_workout
       @workout = @workouts.find_by(id: params[:id])
-      redirect_to workouts_path, alert: 'Exercise not found on the workout.' if @workout.blank?
+      redirect_to workouts_path, alert: 'Entramiento no encontrado.' if @workout.blank?
     end
 
     # Only allow a list of trusted parameters through.

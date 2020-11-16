@@ -1,17 +1,17 @@
-<h1 class="uk-heading-divider"><%= link_to "", admin_training_path, :"uk-icon" => "chevron-left", class: "uk-icon" %> Ejercicios <%= link_to 'Nuevo Ejercicio', new_admin_exercise_path, class:"uk-button uk-button-default uk-align-right" %></h1>
+<h1 class="uk-heading-divider uk-margin-small-left uk-margin-small-right"> Ejercicios<%= remote_icon_link(new_admin_exercise_path, "plus", {:class=>"uk-align-right uk-margin-small-top"}) %></h1>
 
 <div uk-grid>
     <div class="uk-width-expand@s">
-            <table class="uk-table uk-table-divider uk-table-small uk-table-justify">
-              <tbody>
-                <% @exercises.each do |exercise| %>
-                  <tr>
-                    <td><%= exercise.name %></td>
-                    <td><%= link_to '', [:admin, exercise], data: {remote: true, type: "json"}, :"uk-icon" => "chevron-right", class: "uk-icon", onClick: '$("#exercise-side-info").fadeOut("slow");'%></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
+      <table class="uk-table uk-table-divider uk-table-small uk-table-justify">
+        <tbody>
+          <% @exercises.each do |exercise| %>
+            <tr>
+              <td><%= exercise.name %></td>
+              <td><%= link_to '', [:admin, exercise], data: {remote: true, type: "json"}, :"uk-icon" => "chevron-right", class: "uk-icon", onClick: '$("#exercise-side-info").fadeOut("slow");'%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
     <div class="uk-width-1-3@m">
       <div class="uk-card uk-card-default uk-card-hover" id="exercise-side-info"  uk-sticky="offset: 60">

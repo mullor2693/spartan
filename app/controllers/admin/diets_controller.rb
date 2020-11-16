@@ -32,11 +32,12 @@ class Admin::DietsController < Admin::ApplicationController
     @diet.creator = @current_user
     respond_to do |format|
       if @diet.save
+        # track("diet.create", @diet)
         format.html { redirect_to [:admin, @diet], notice: 'Diet was successfully created.' }
         format.json { render :show, status: :created, location: [:admin, @diet] }
       else
         format.html { render :new }
-        format.json { render json: @diet.errors, status: :unprocessable_entity }
+        format.js { render :new, status: :unprocessable_entity }
       end
     end
   end

@@ -9,6 +9,9 @@ class Food < ApplicationRecord
     
     accepts_nested_attributes_for :food_nutrients, reject_if: proc { |attributes| attributes['nutrient_id'].blank? }
 
+    validates :name, presence: true
+    validates :name, uniqueness: true
+
     def kilocals
         (food_nutrients.joins(:nutrient).find_by('nutrients.name': 'energía, total')&.quantity || 0)*4.184
     end

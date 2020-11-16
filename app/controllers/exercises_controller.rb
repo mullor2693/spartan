@@ -1,5 +1,7 @@
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
+  add_breadcrumb "Físico", :physical_path
+  add_breadcrumb "Ejercicios", :exercises_path
 
   # GET /exercises
   # GET /exercises.json

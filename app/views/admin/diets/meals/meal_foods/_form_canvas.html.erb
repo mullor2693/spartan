@@ -2,7 +2,7 @@
 
 <h3><%= @meal_food.new_record? ? "Añadir Alimento" : "Modificar alimento" %></h3>
 
-<%= form_with(model: [:admin, @diet, @meal, @meal_food], local: true) do |form| %>
+<%= form_with(model: [@diet, @meal, @meal_food], local: true) do |form| %>
     <div class="uk-margin">
         <%= form.collection_select(:food_id, Food.all, :id, :name, {include_blank: 'Selecciona un alimento'},{ class: "uk-select", disabled: !@meal_food.new_record?}) %>
     </div>

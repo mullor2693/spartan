@@ -15,11 +15,12 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   # Callbacks
-  before_save :set_default_avatar
+  # before_save :set_default_avatar
 
   # Validation
+  validates :name, :email, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :name, presence: true
+  validates :email, uniqueness: true
 
   # Attributes
   def nickname

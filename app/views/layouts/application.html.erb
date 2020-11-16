@@ -9,7 +9,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'custom', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <%= render 'shared/loader' %>
   <body class="">
     <% if current_user.present? %>
       <%= render 'shared/navbars/admin_navbar' %>
@@ -21,7 +21,7 @@
         <%= render 'shared/navbars/breadcrumbs' %>
       <% end %>
       <div class="uk-margin">
-        <div class="uk-container uk-position-relative">
+        <div class="uk-container uk-container-center uk-position-relative">
           <%= yield %>
         </div>
       </div>
@@ -33,7 +33,6 @@
       <%= render 'shared/edition_canvas' %>
     <% end %>
   </body>
-  <%= render 'shared/loader' %>
 </html>
 
 <script>

@@ -5,10 +5,12 @@ class Admin::Diets::DietMealsController < Admin::Diets::ApplicationController
   # GET /diet_meals/new
   def new
     @diet_meal = @diet_meals.new
+    render :edit
   end
 
   # GET /diet_meals/1/edit
   def edit
+    render :edit
   end
 
   # POST /diet_meals
@@ -17,10 +19,10 @@ class Admin::Diets::DietMealsController < Admin::Diets::ApplicationController
     @diet_meal = @diet_meals.new(diet_meal_params)
     respond_to do |format|
       if @diet_meal.save
-        format.html { redirect_to [@diet, @meal, @diet_meal], notice: 'Meal food was successfully created.' }
-        format.json { render :show, status: :created, location: [@diet, @meal, @diet_meal] }
+        format.html { redirect_to [:admin, @diet], notice: 'Comida creada y asociada a la dieta.' }
+        format.json { render :show, status: :created, location: [:admin, @diet] }
       else
-        format.html { render :new }
+        format.html { render :edit }
         format.json { render json: @diet_meal.errors, status: :unprocessable_entity }
       end
     end
@@ -31,7 +33,7 @@ class Admin::Diets::DietMealsController < Admin::Diets::ApplicationController
   def update
     respond_to do |format|
       if @diet_meal.update(diet_meal_params)
-        format.html { redirect_to [:admin, @diet], notice: 'Meal food was successfully updated.' }
+        format.html { redirect_to [:admin, @diet], notice: 'Comida actualizada la dieta.' }
         format.json { render :show, status: :ok, location: [:admin, @diet] }
       else
         format.html { render :edit }
@@ -63,6 +65,6 @@ class Admin::Diets::DietMealsController < Admin::Diets::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def diet_meal_params
-      params.require(:diet_meal).permit(:food_id, :quantity, :unit)
+      params.require(:diet_meal).permit(:daytime, meal_attributes: [:name])
     end
 end

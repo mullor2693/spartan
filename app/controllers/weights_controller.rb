@@ -1,6 +1,8 @@
 class WeightsController < ApplicationController
   before_action :set_user_weights
   before_action :set_weight, only: [:show, :edit, :update, :destroy]
+  add_breadcrumb "Nutrición", :nutrition_path
+  add_breadcrumb "Peso", :weights_path
 
   # GET /weights
   # GET /weights.json
@@ -28,11 +30,11 @@ class WeightsController < ApplicationController
     @weight = @weights.new(weight_params)
     respond_to do |format|
       if @weight.save
-        format.html { redirect_to @weight, notice: 'Weight was successfully created.' }
-        format.json { render :show, status: :created, location: @weight }
+        format.html { redirect_to weights_path, notice: 'Nuevo peso añadido.' }
+        format.json { render :index, status: :created, location: @weight }
       else
         format.html { render :new }
-        format.json { render json: @weight.errors, status: :unprocessable_entity }
+        format.js { render :new, status: :unprocessable_entity }
       end
     end
   end
@@ -42,8 +44,8 @@ class WeightsController < ApplicationController
   def update
     respond_to do |format|
       if @weight.update(weight_params)
-        format.html { redirect_to @weight, notice: 'Weight was successfully updated.' }
-        format.json { render :show, status: :ok, location: @weight }
+        format.html { redirect_to weights_path, notice: 'Peso actualizado.' }
+        format.json { render :index, status: :ok, location: @weight }
       else
         format.html { render :edit }
         format.json { render json: @weight.errors, status: :unprocessable_entity }

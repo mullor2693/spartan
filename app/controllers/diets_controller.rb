@@ -1,6 +1,8 @@
 class DietsController < ApplicationController
   before_action :set_user_diets
   before_action :set_diet, only: [:show, :edit, :update, :destroy]
+  add_breadcrumb "Nutrición", :nutrition_path
+  add_breadcrumb "Dietas", :diets_path
 
   # GET /diets
   # GET /diets.json
@@ -32,8 +34,8 @@ class DietsController < ApplicationController
         format.html { redirect_to @diet, notice: 'Diet was successfully created.' }
         format.json { render :show, status: :created, location: @diet }
       else
-        format.html { render :new }
-        format.json { render json: @diet.errors, status: :unprocessable_entity }
+        format.html {  }
+        format.js { render :new, status: :unprocessable_entity }
       end
     end
   end

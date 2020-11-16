@@ -25,11 +25,11 @@ class Admin::Diets::MealsController < Admin::Diets::ApplicationController
   # POST /meals
   # POST /meals.json
   def create
-    debugger
     @meal = @meals.new(meal_params)
     respond_to do |format|
       if @meal.save
-        format.html { redirect_to [:admin, @diet, @meal], notice: 'Meal was successfully created.' }
+        DietMeal.create(diet: @diet, meal: @meal, daytime: @meal&.daytime || 0)
+        format.html { redirect_to [:admin, @diet], notice: 'Meal was successfully created.' }
         format.json { render :show, status: :created, location: [:admin, @diet, @meal] }
       else
         format.html { render :new }

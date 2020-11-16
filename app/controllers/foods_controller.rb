@@ -1,5 +1,7 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show]
+  add_breadcrumb "Nutrición", :nutrition_path
+  add_breadcrumb "Alimentos", :foods_path
 
   # GET /foods
   # GET /foods.json
