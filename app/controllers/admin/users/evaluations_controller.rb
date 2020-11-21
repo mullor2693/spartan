@@ -5,7 +5,6 @@ class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
   # GET /evaluations
   # GET /evaluations.json
   def index
-    @evaluations = Evaluation.all
   end
 
   # GET /evaluations/1
@@ -16,6 +15,8 @@ class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
   # GET /evaluations/new
   def new
     @evaluation = Evaluation.new
+    @evaluation.user = @user
+    @evaluation.evaluation_date = Time.current.strftime("%d-%m-%YT%H:%M")
   end
 
   # GET /evaluations/1/edit
@@ -26,11 +27,12 @@ class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
   # POST /evaluations.json
   def create
     @evaluation = Evaluation.new(evaluation_params)
-
+    @evaluation.user = @user
+    @evaluation.creator = current_user
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
-        format.json { render :show, status: :created, location: @evaluation }
+        format.html { redirect_to [:admin, @user, @evaluation], notice: 'Evaluation was successfully created.' }
+        format.json { render :show, status: :created, location: [:admin, @user, @evaluation] }
       else
         format.html { render :new }
         format.json { render json: @evaluation.errors, status: :unprocessable_entity }
@@ -43,8 +45,8 @@ class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
   def update
     respond_to do |format|
       if @evaluation.update(evaluation_params)
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @evaluation }
+        format.html { redirect_to [:admin, @user, @evaluation], notice: 'Evaluation was successfully updated.' }
+        format.json { render :show, status: :ok, location: [:admin, @user, @evaluation] }
       else
         format.html { render :edit }
         format.json { render json: @evaluation.errors, status: :unprocessable_entity }
@@ -57,7 +59,7 @@ class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
   def destroy
     @evaluation.destroy
     respond_to do |format|
-      format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully destroyed.' }
+      format.html { redirect_to admin_user_evaluations_url(@user), notice: 'Evaluation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,12 +67,14 @@ class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_evaluations
+      add_breadcrumb @user.full_name, admin_user_path(@user)
       @evaluations = @user.evaluations
+      add_breadcrumb "Evaluaciones", :admin_user_evaluations_path
     end
 
     def set_evaluation
       @evaluation = @evaluations.find_by(id: params[:id])
-      redirect_to admin_user_evaluations_path(@user), alert: 'Diet not found on user.' if @evaluation.blank?
+      redirect_to admin_user_evaluations_path(@user), alert: 'Evaluation not found on user.' if @evaluation.blank?
     end
 
     # Only allow a list of trusted parameters through.

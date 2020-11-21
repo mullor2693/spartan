@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :workouts, through: :user_workouts
   has_many :weights, -> { order(evaluation_date: :desc) }
   has_many :measurements
-  has_many :evaluations
+  has_many :evaluations, inverse_of: :user
   has_many :user_diets
   has_many :diets, through: :user_diets
   has_one_attached :avatar

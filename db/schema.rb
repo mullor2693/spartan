@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_13_222025) do
+ActiveRecord::Schema.define(version: 2020_11_20_224033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 2020_11_13_222025) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "creator_id"
+    t.index ["creator_id"], name: "index_evaluations_on_creator_id"
     t.index ["user_id"], name: "index_evaluations_on_user_id"
   end
 
@@ -155,6 +157,9 @@ ActiveRecord::Schema.define(version: 2020_11_13_222025) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "evaluation_date"
+    t.bigint "creator_id"
+    t.index ["creator_id"], name: "index_measurements_on_creator_id"
     t.index ["user_id"], name: "index_measurements_on_user_id"
   end
 
@@ -266,6 +271,7 @@ ActiveRecord::Schema.define(version: 2020_11_13_222025) do
   add_foreign_key "diet_meals", "meals"
   add_foreign_key "diets", "users"
   add_foreign_key "evaluations", "users"
+  add_foreign_key "evaluations", "users", column: "creator_id"
   add_foreign_key "exercise_workouts", "exercises"
   add_foreign_key "exercise_workouts", "workouts"
   add_foreign_key "food_nutrients", "foods"
@@ -273,6 +279,7 @@ ActiveRecord::Schema.define(version: 2020_11_13_222025) do
   add_foreign_key "meal_foods", "foods"
   add_foreign_key "meal_foods", "meals"
   add_foreign_key "measurements", "users"
+  add_foreign_key "measurements", "users", column: "creator_id"
   add_foreign_key "user_diets", "diets"
   add_foreign_key "user_diets", "users"
   add_foreign_key "user_workouts", "users"

@@ -1,104 +1,105 @@
-<p id="notice"><%= notice %></p>
+<h1 class="uk-heading-divider uk-margin-small-left uk-margin-small-right">
+  Evaluación
+  <%= link_to '', [:admin, @user, @evaluation], method: :delete, :"uk-icon" => "trash", class: "uk-icon uk-align-right uk-margin-small-top uk-margin-small-left", data: { confirm: '¿Estás seguro que deseas borrar la evaluación?' } %>
+  <%= remote_icon_link(edit_admin_user_evaluation_path(@user, @evaluation), "file-edit", {class: "uk-align-right uk-margin-small-top"}) %>
+</h1>
 
-<p>
-  <strong>Height:</strong>
-  <%= @evaluation.height %>
-</p>
+<div class="uk-padding-small" uk-grid>
+  <div class="uk-width-expand@s">
+    <p>
+      <strong>Fecha de evaluación:</strong>
+      <%= @evaluation.evaluation_date.strftime("%d/%m/%Y, %H:%M") %>
+    </p>
 
-<p>
-  <strong>Weight:</strong>
-  <%= @evaluation.weight %>
-</p>
+    <p>
+      <strong>Altura:</strong>
+      <%= @evaluation.height %>
+    </p>
 
-<p>
-  <strong>Imc:</strong>
-  <%= @evaluation.imc %>
-</p>
+    <p>
+      <strong>Peso:</strong>
+      <%= @evaluation.weight %>
+    </p>
 
-<p>
-  <strong>Fat rate:</strong>
-  <%= @evaluation.fat_rate %>
-</p>
+    <p>
+      <strong>IMC:</strong>
+      <%= @evaluation.imc %>
+    </p>
 
-<p>
-  <strong>Fat weight:</strong>
-  <%= @evaluation.fat_weight %>
-</p>
+    <p>
+      <strong>Porcentaje de grasa:</strong>
+      <%= @evaluation.fat_rate %>
+    </p>
 
-<p>
-  <strong>Slim weight:</strong>
-  <%= @evaluation.slim_weight %>
-</p>
+    <p>
+      <strong>Peso graso:</strong>
+      <%= @evaluation.fat_weight %>
+    </p>
 
-<p>
-  <strong>Residual weight:</strong>
-  <%= @evaluation.residual_weight %>
-</p>
+    <p>
+      <strong>Peso base:</strong>
+      <%= @evaluation.slim_weight %>
+    </p>
 
-<p>
-  <strong>Muscle weight:</strong>
-  <%= @evaluation.muscle_weight %>
-</p>
+    <p>
+      <strong>Peso residual:</strong>
+      <%= @evaluation.residual_weight %>
+    </p>
 
-<p>
-  <strong>Triceps skinfold:</strong>
-  <%= @evaluation.triceps_skinfold %>
-</p>
+    <p>
+      <strong>Peso muscular:</strong>
+      <%= @evaluation.muscle_weight %>
+    </p>
 
-<p>
-  <strong>Subscapular skinfold:</strong>
-  <%= @evaluation.subscapular_skinfold %>
-</p>
+    <p>
+      <strong>Pliegue triceps:</strong>
+      <%= @evaluation.triceps_skinfold %>
+    </p>
 
-<p>
-  <strong>Bicipital skinfold:</strong>
-  <%= @evaluation.bicipital_skinfold %>
-</p>
+    <p>
+      <strong>Pliegue subcapular:</strong>
+      <%= @evaluation.subscapular_skinfold %>
+    </p>
 
-<p>
-  <strong>Axilliary skinfold:</strong>
-  <%= @evaluation.axilliary_skinfold %>
-</p>
+    <p>
+      <strong>Pliegue bicipital:</strong>
+      <%= @evaluation.bicipital_skinfold %>
+    </p>
 
-<p>
-  <strong>Suprailiac skinfold:</strong>
-  <%= @evaluation.suprailiac_skinfold %>
-</p>
+    <p>
+      <strong>Pliegue axilar:</strong>
+      <%= @evaluation.axilliary_skinfold %>
+    </p>
 
-<p>
-  <strong>Thoracic skinfold:</strong>
-  <%= @evaluation.thoracic_skinfold %>
-</p>
+    <p>
+      <strong>Pliegue suprailíaco:</strong>
+      <%= @evaluation.suprailiac_skinfold %>
+    </p>
 
-<p>
-  <strong>Abdominal skinfold:</strong>
-  <%= @evaluation.abdominal_skinfold %>
-</p>
+    <p>
+      <strong>Pliegue torácico:</strong>
+      <%= @evaluation.thoracic_skinfold %>
+    </p>
 
-<p>
-  <strong>Medialcalf skinfold:</strong>
-  <%= @evaluation.medialcalf_skinfold %>
-</p>
+    <p>
+      <strong>Pliegue abdominal:</strong>
+      <%= @evaluation.abdominal_skinfold %>
+    </p>
 
-<p>
-  <strong>Fist bone diametre:</strong>
-  <%= @evaluation.fist_bone_diametre %>
-</p>
+    <p>
+      <strong>Pliegue pantorrilla:</strong>
+      <%= @evaluation.medialcalf_skinfold %>
+    </p>
 
-<p>
-  <strong>Femur bone diametre:</strong>
-  <%= @evaluation.femur_bone_diametre %>
-</p>
+    <p>
+      <strong>Diametro del puño:</strong>
+      <%= @evaluation.fist_bone_diametre %>
+    </p>
 
-<p>
-  <strong>Evaluation date:</strong>
-  <%= @evaluation.evaluation_date %>
-</p>
+    <p>
+      <strong>Diametro del femur:</strong>
+      <%= @evaluation.femur_bone_diametre %>
+    </p>
+  </div>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @evaluation.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
-<%= link_to 'Back', evaluations_path %>

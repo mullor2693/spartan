@@ -2063,7 +2063,10 @@ select.uk-form-width-xsmall{
 .uk-search-navbar .uk-search-input{
     height:40px;
     background:transparent;
-    font-size:24px
+    font-size:24px;
+    .small {
+        font-size:20px; 
+    }
 }
 .uk-search-navbar .uk-search-icon{
     width:40px
@@ -3309,7 +3312,7 @@ ul.uk-nav-sub{
     border-left-color:#e5e5e5
 }
 .uk-subnav-pill>*>:first-child{
-    padding:5px 10px;
+    padding:6px 8px;
     background:transparent;
     color:#999
 }
@@ -3325,7 +3328,8 @@ ul.uk-nav-sub{
     background-color:#c40000;
     background: linear-gradient(0deg, #c40000, #950000);
     box-shadow: 0 5px 10px -7px #000000b3;
-    color:#fff
+    color:#fff;
+    border-radius: 5px
 }
 .uk-subnav>.uk-disabled>a{
     color:#999
@@ -6939,11 +6943,9 @@ body{
         margin-bottom: 10px !important;
     }
 }
-.sticky-options {  
-    padding: 15px 0 0 20px;
+.sticky-options.uk-active {  
     background: #fff;
-    transform: scale(1.08);
-    box-shadow: 0 10px 30px -30px #383838;
+    box-shadow: 0 15px 25px -35px #383838;
     z-index: 50;
 }
 .square-50 {
@@ -7037,4 +7039,8 @@ a.remote-icon-margin-top-link {
         color: #f2f2f2;
         border: 3px solid #e46e6e;
     }
+}
+
+.w-100 {
+    width: 100% !important;
 }

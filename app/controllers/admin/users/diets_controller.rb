@@ -14,7 +14,7 @@ class Admin::Users::DietsController < Admin::Users::ApplicationController
 
   # GET /diets/new
   def new
-    @diet = @diets.new
+    @diet = Diet.new
   end
 
   # GET /diets/1/edit
@@ -24,9 +24,11 @@ class Admin::Users::DietsController < Admin::Users::ApplicationController
   # POST /diets
   # POST /diets.json
   def create
-    @diet = @diets.new(diet_params)
+    @diet = Diet.new(diet_params)
+    @diet.creator = @current_user
     respond_to do |format|
       if @diet.save
+        UserDiet.create(user: @user, diet: @diet)
         format.html { redirect_to @diet, notice: 'Diet was successfully created.' }
         format.json { render :show, status: :created, location: @diet }
       else
@@ -63,7 +65,9 @@ class Admin::Users::DietsController < Admin::Users::ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_diets
+      add_breadcrumb @user.full_name, admin_user_path(@user)
       @diets = @user.diets
+      add_breadcrumb "Dietas", admin_user_diets_path(@user)
     end
 
     def set_diet

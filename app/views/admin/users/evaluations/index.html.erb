@@ -1,35 +1,36 @@
-<p id="notice"><%= notice %></p>
+<h1 class="uk-heading-divider uk-margin-small-left uk-margin-small-right"> Evaluaciones<%= remote_icon_link(new_admin_user_evaluation_path(@user), "plus", {:class=>"uk-align-right uk-margin-small-top"}) %></h1>
 
-<h1 class="uk-heading-divider">Evaluations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Height</th>
-      <th>Weight</th>
-      <th>Imc</th>
-      <th>Fat rate</th>
-      <th>Evaluation date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @evaluations.each do |evaluation| %>
-      <tr>
-        <td><%= evaluation.height %></td>
-        <td><%= evaluation.weight %></td>
-        <td><%= evaluation.imc %></td>
-        <td><%= evaluation.fat_rate %></td>
-        <td><%= evaluation.evaluation_date %></td>
-        <td><%= link_to 'Show', evaluation %></td>
-        <td><%= link_to 'Edit', edit_evaluation_path(evaluation) %></td>
-        <td><%= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="uk-padding-small" uk-grid>
+    <div class="uk-width-expand@s">
+    <% if @evaluations.count > 0 %>
+      <table class="uk-table uk-table-divider uk-table-small uk-table-justify">
+        <thead>
+          <tr>
+            <th>Fecha de Evaluacion</th>
+            <th>Altura</th>
+            <th>Peso</th>
+            <th>IMC</th>
+            <th collapse="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @evaluations.order(evaluation_date: :desc).each do |evaluation| %>
+            <tr>
+              <td><%= evaluation.evaluation_date.strftime("%d/%m/%Y, %H:%M") %></td>
+              <td><%= evaluation.height %></td>
+              <td><%= evaluation.weight %></td>
+              <td><%= evaluation.imc %></td>
+              <td>
+                <%= link_to '', [:admin, @user, evaluation], :"uk-icon" => "file-text", class: "uk-icon"%>
+                <%= remote_icon_link(edit_admin_user_evaluation_path(@user, evaluation), "file-edit", {:class=>""}) %>
+                <%= link_to '', [:admin, @user, evaluation], method: :delete, :"uk-icon" => "trash", class: "uk-icon", data: { confirm: '¿Estás seguro que deseas borrar la evaluación?' } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>No existe ninguna evaluacion para este usuario.<p>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Evaluation', new_evaluation_path %>
+    </div>
+</div>
