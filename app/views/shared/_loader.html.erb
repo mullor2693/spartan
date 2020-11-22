@@ -18,7 +18,8 @@
     $("#loading").show();
   });
   $(document).on("turbolinks:load", function(){
-    $("#loading").delay(3000).hide();
+    UIkit.offcanvas("#edition-canvas-container").hide();
+    $("#loading").hide();
   });
   
 </script>

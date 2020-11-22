@@ -9,7 +9,6 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'custom', 'data-turbolinks-track': 'reload' %>
   </head>
-  <%= render 'shared/loader' %>
   <body class="">
     <% if current_user.present? %>
       <%= render 'shared/navbars/admin_navbar' %>
@@ -28,6 +27,7 @@
       <%#= render partial: "shared/navbars/navbar_bottom" %>
     </div>
     <% if current_user.present? %>
+      <%= render 'shared/loader' %>
       <%= render 'shared/modal' %>
       <%= render 'shared/canvas/menu' %>
       <%= render 'shared/edition_canvas' %>
