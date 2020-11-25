@@ -907,13 +907,25 @@ button.uk-icon:not(:disabled){
 .uk-form-large:not(select):not(input):not(textarea){
     line-height:53px
 }
-.uk-form-danger,.uk-form-danger:focus{
+.uk-form-danger,.uk-form-danger:focus {
     color:#f0506e;
-    border-color:#f0506e
+    border-color:#f0506e;
+    &::placeholder {
+        color: #f0506e;
+        opacity: 1; 
+      }
+    &:-ms-input-placeholder { color: #f0506e; }
+    &::-ms-input-placeholder { color: #f0506e; }
 }
 .uk-form-success,.uk-form-success:focus{
     color:#32d296;
-    border-color:#32d296
+    border-color:#32d296;
+    &::placeholder {
+        color: #32d296;
+        opacity: 1; 
+      }
+    &:-ms-input-placeholder { color: #32d296; }
+    &::-ms-input-placeholder { color:#32d296; }
 }
 .uk-form-blank{
     background:none;

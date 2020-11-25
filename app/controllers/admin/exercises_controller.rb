@@ -34,7 +34,7 @@ class Admin::ExercisesController < Admin::ApplicationController
         format.json { render :show, status: :created, location: @exercise }
       else
         format.html { render :new }
-        format.json { render json: @exercise.errors, status: :unprocessable_entity }
+        format.js { render :new, status: :unprocessable_entity }
       end
     end
   end
@@ -72,6 +72,6 @@ class Admin::ExercisesController < Admin::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exercise_params
-      params.require(:exercise).permit(:name, :description)
+      params.require(:exercise).permit(:name, :description, :categories, :muscle_groups)
     end
 end
