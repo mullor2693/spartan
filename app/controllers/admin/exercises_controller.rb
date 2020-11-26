@@ -6,7 +6,8 @@ class Admin::ExercisesController < Admin::ApplicationController
   # GET /exercises
   # GET /exercises.json
   def index
-    @exercises = Exercise.all
+    @q = Exercise.ransack(params[:q])
+    @exercises = @q.result(distinct: true)
   end
 
   # GET /exercises/1

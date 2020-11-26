@@ -71,3 +71,6 @@ gem "breadcrumbs_on_rails"
 
 # Gem for translations
 gem 'rails-i18n'
+
+# Gem for tags 
+gem 'acts-as-taggable-on', '~> 6.0'

@@ -26,14 +26,14 @@
     <div class="uk-margin">
       <%= form.label "Categorías", class: "uk-form-label" %>
       <div class="uk-form-controls">
-        <%= select(@exercise.model_name.singular, :categories, Exercise::CATEGORIES.map(&:capitalize), {}, { multiple: true, class: "uk-select#{" uk-form-danger" if errors[:categories].present?}" }) %>
+        <%= select(@exercise.model_name.singular, :category_list, Exercise.category_list.map(&:capitalize), {}, { multiple: true, class: "uk-select#{" uk-form-danger" if errors[:categories].present?}" }) %>
       </div>
     </div>
 
     <div class="uk-margin">
     <%= form.label "Grupos Musculares", class: "uk-form-label" %>
       <div class="uk-form-controls">
-        <%= select(@exercise.model_name.singular, :muscle_groups, Exercise::MUSCLE_GROUPS.map(&:capitalize), {}, { multiple: true, class: "uk-select#{" uk-form-danger" if errors[:muscle_groups].present?}" }) %>
+        <%= form.text_field :involved_muscle_list %>
       </div>
     </div>
   </fieldset>
