@@ -1,3 +1,5 @@
+import $ from 'jquery'
+
 $(".ajaxNew[data-link]").on("click", function (e) {
   $("#loading").show();
   UIkit.offcanvas("#edition-canvas-container").hide();

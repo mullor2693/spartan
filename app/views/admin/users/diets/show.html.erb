@@ -34,7 +34,7 @@
                         <div class="uk-width-auto uk-margin-small-left">
                           <ul class="uk-iconnav">
                             <li><%= link_to '', [:admin, @diet, dm.meal], :'uk-icon' => "icon: folder" %></li>
-                            <li><%= remote_icon_link(edit_admin_diet_diet_meal_path(@diet, dm), "file-edit") %></li>
+                            <li><%= remote_icon_link(edit_admin_user_diet_diet_meal_path(@user, @diet, dm), "file-edit") %></li>
                             <li><%= link_to '', [:admin, @diet, dm], method: :delete, data: { confirm: 'Estas seguro?' }, :'uk-icon' => "icon: trash" %></li>
                           </ul>
                         </div>
@@ -50,7 +50,7 @@
         <p class="uk-text-center">Aun no ha seleccionado ninguna comida en esta dieta. </p>
       <%end%>
     </div>
-    <%= remote_link(new_admin_diet_diet_meal_path(@diet), "Añadir Comida", {:class=>"uk-button uk-button-default uk-width-1-1 uk-margin-top"}) %>
+    <%= remote_link(new_admin_user_diet_diet_meal_path(@user, @diet), "Añadir Comida", {:class=>"uk-button uk-button-default uk-width-1-1 uk-margin-top"}) %>
   </div>
 
 </div>

@@ -4,7 +4,7 @@
 
 <%= form_with(model: [:admin, @diet, @meal, @meal_food], local: true) do |form| %>
     <div class="uk-margin">
-        <%= form.collection_select(:food_id, Food.all, :id, :name, {include_blank: 'Selecciona un alimento'},{ class: "uk-select", disabled: !@meal_food.new_record?}) %>
+        <%= form.collection_select(:food_id, Food.all, :id, :name, {include_blank: 'Selecciona un alimento'},{ class: "uk-select select2", disabled: !@meal_food.new_record?}) %>
     </div>
     <div class="uk-margin">
         <%= form.number_field :quantity, class: "uk-input", placeholder: "Cantidad", step: :any %>
@@ -16,3 +16,7 @@
         <%= form.submit "Guardar", class:"uk-button uk-button-default" %>
     </div>
 <% end %>
+
+<script>
+    $(document).ready(function() { $(".select2").select2(); });
+</script>

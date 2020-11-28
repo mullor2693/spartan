@@ -16,8 +16,12 @@
           <li data-owner="<%= diet.creator == @current_user ? "owned" : "other" %>">
           <%= link_to [:admin, diet], class: "uk-link-reset" do %>
             <div class="uk-card uk-height-1-1 <%= diet.creator == @current_user ? "uk-card-secondary" : "uk-card-primary" %> uk-card-body uk-margin-small-left uk-margin-small-right">
-                <h3 class="uk-card-title"><%= diet.name %></h3>
-                <p class="uk-text-meta">Dias: <%= diet.weekdays_sentence %></p>
+              <h3 class="uk-card-title"><%= diet.name %></h3>
+              <div class="uk-width-1-1 uk-text-center">
+                <% Weekable::SM_WEEKDAYS.each do |number, small| %>
+                  <p class="uk-margin-top uk-icon-button weekday_btn<%= " active" if diet.weekdays.include?(number) %>"><%= small %></p>
+                <% end %>
+              </div>
             </div>
             <%end%>
           </li>

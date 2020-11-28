@@ -29,8 +29,8 @@ class Admin::Users::DietsController < Admin::Users::ApplicationController
     respond_to do |format|
       if @diet.save
         UserDiet.create(user: @user, diet: @diet)
-        format.html { redirect_to @diet, notice: 'Diet was successfully created.' }
-        format.json { render :show, status: :created, location: @diet }
+        format.html { redirect_to [:admin, @user, @diet], notice: 'Diet was successfully created.' }
+        format.json { render :show, status: :created, location: [:admin, @user, @diet] }
       else
         format.html { render :new }
         format.json { render json: @diet.errors, status: :unprocessable_entity }
@@ -43,8 +43,8 @@ class Admin::Users::DietsController < Admin::Users::ApplicationController
   def update
     respond_to do |format|
       if @diet.update(diet_params)
-        format.html { redirect_to @diet, notice: 'Diet was successfully updated.' }
-        format.json { render :show, status: :ok, location: @diet }
+        format.html { redirect_to [:admin, @user, @diet], notice: 'Diet was successfully updated.' }
+        format.json { render :show, status: :ok, location: [:admin, @user, @diet] }
       else
         format.html { render :edit }
         format.json { render json: @diet.errors, status: :unprocessable_entity }
@@ -57,7 +57,7 @@ class Admin::Users::DietsController < Admin::Users::ApplicationController
   def destroy
     @diet.destroy
     respond_to do |format|
-      format.html { redirect_to diets_url, notice: 'Diet was successfully destroyed.' }
+      format.html { redirect_to admin_user_diets_url(@user), notice: 'Diet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -72,7 +72,7 @@ class Admin::Users::DietsController < Admin::Users::ApplicationController
 
     def set_diet
       @diet = @diets.find_by(id: params[:id])
-      redirect_to diets_path, alert: 'Diet not found on user.' if @diet.blank?
+      redirect_to admin_user_diets_path(@user), alert: 'Diet not found on user.' if @diet.blank?
     end
 
     # Only allow a list of trusted parameters through.
