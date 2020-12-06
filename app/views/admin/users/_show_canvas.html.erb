@@ -1,0 +1,26 @@
+<div class="uk-modal-header uk-text-center">
+    <%= image_tag user.avatar.attached? ? user.avatar_sized(:thumb) : "users/avatar.png", class:"uk-border-circle uk-align-center square-200" %>
+    <h1 class="uk-modal-title uk-margin-remove-bottom"><%= user&.name %></h1>
+    <h3 class="uk-margin-remove-top"><%= user&.surname %></h3>
+    <p class="uk-text-meta uk-margin-remove-top">Alta: <time datetime="<%= user&.created_at %>"><%= user&.created_at&.strftime("%d-%m-%Y") %></time></p>
+</div>
+<div class="uk-modal-body uk-text-center">
+    <ul class="uk-list">
+    <li>F. Nacimiento: <%= user&.birth_date&.strftime("%d-%m-%Y") %></li>
+    <li>Sexo: <%= user&.sex.present? ? ["Hombre", "Mujer"][user.sex] : "Sin especificar" %></li>
+    <li>Altura: <%= user&.height %> cm</li>
+    <li>Peso: <%= user&.weight %> Kg</li> 
+  </ul>
+  <ul class="uk-list">
+    <li>Correo: <%= user&.email %></li>
+    <li>Telefono: <%= user&.phone %></li>
+  </ul>
+</div>
+<div class="uk-modal-footer">
+    <%#= link_to 'Dietas', admin_user_diets_path(user), class: "uk-button uk-button-default uk-width-1-1 uk-margin-top" %> 
+    <%= link_to 'Entrenamientos', admin_user_workouts_path(user), class: "uk-button uk-button-default uk-width-1-1 uk-margin-top" %>
+    <%= link_to 'Medidas', admin_user_measurements_path(user), class: "uk-button uk-button-default uk-width-1-1 uk-margin-top" %>
+    <%= link_to 'Evaluaciones', admin_user_evaluations_path(user), class: "uk-button uk-button-default uk-width-1-1 uk-margin-top" %>
+    <%= link_to 'Pesos', admin_user_weights_path(user), class: "uk-button uk-button-default uk-width-1-1 uk-margin-top" %>
+    <%= link_to 'Ver Perfil', [:admin, user], class:"uk-button uk-button-primary uk-width-1-1 uk-margin-top" %>
+</div>

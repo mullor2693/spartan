@@ -39,10 +39,24 @@ class User < ApplicationRecord
     { id: id, email: email }
   end
 
+  def get_evaluable_info(info=[])
+    info = Evaluation::EVALUABLE_ATTRIBUTES-(Evaluation::EVALUABLE_ATTRIBUTES-info)
+    r_arr = []
+    info.each do |ev|
+      r_hash = {}
+      evaluations.order(evaluation_date: :desc).each do |uev|
+        r_hash[uev.evaluation_date.to_date] = uev[ev]
+      end
+      r_arr << {name: ev.humanize, data: r_hash}
+    end
+    return r_arr
+  end
+
   # Object Methods
   def avatar_sized(size)
       avatar.variant(Imageable.sizes[size]).processed
   end
+
 
   # Class Methods
   def self.html_from_track_info(info)

@@ -1,17 +1,5 @@
 <h1 class="uk-heading-divider uk-margin-small-left uk-margin-small-right"> Usuarios<%= remote_icon_link(new_admin_user_path, "plus", {:class=>"uk-align-right uk-margin-small-top"}) %></h1>
 
-<!-- <div class="uk-padding-small">
-  <%= search_form_for @q, url: admin_users_path, id: "admin_user_search", class:"uk-grid" do |f| %>
-    <div class="uk-search uk-search-default uk-width-expand">
-      <%= f.search_field :name_or_surname_cont, class: "uk-search-input", placeholder: "Buscar..." %>
-    </div>
-    <% if !@q.conditions.empty?%>
-      <%= link_to "", admin_users_path, class: "uk-button uk-button-default uk-icon uk-width-auto  uk-padding-small uk-padding-remove-vertical", :"uk-icon" => "trash" %>
-    <%end%>
-    <%= link_to '', "#", onclick:"$('#admin_user_search').submit()", class:"uk-button uk-button-default uk-icon uk-width-auto  uk-padding-small uk-padding-remove-vertical", "uk-icon": "search"  %>
-  <% end %>
-</div> -->
-
 <div uk-filter="target: .js-filter">
   <div class="sticky-options" uk-sticky="offset: 132">
     <nav uk-navbar>
@@ -58,6 +46,7 @@
               </div>
             </div>
             <div class="uk-card-footer">
+              <%= remote_link(admin_user_path(user), "Ver", {:class=>"uk-button uk-button-text"}) %>
               <%= remote_link(edit_admin_user_path(user), "Editar", {:class=>"uk-button uk-button-text"}) %>
             </div>
           </div>

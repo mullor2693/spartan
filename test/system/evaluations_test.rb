@@ -19,7 +19,6 @@ class EvaluationsTest < ApplicationSystemTestCase
     fill_in "Bicipital skinfold", with: @evaluation.bicipital_skinfold
     fill_in "Evaluation date", with: @evaluation.evaluation_date
     fill_in "Fat rate", with: @evaluation.fat_rate
-    fill_in "Fat weight", with: @evaluation.fat_weight
     fill_in "Femur bone diametre", with: @evaluation.femur_bone_diametre
     fill_in "Fist bone diametre", with: @evaluation.fist_bone_diametre
     fill_in "Height", with: @evaluation.height
@@ -49,7 +48,6 @@ class EvaluationsTest < ApplicationSystemTestCase
     fill_in "Bicipital skinfold", with: @evaluation.bicipital_skinfold
     fill_in "Evaluation date", with: @evaluation.evaluation_date
     fill_in "Fat rate", with: @evaluation.fat_rate
-    fill_in "Fat weight", with: @evaluation.fat_weight
     fill_in "Femur bone diametre", with: @evaluation.femur_bone_diametre
     fill_in "Fist bone diametre", with: @evaluation.fist_bone_diametre
     fill_in "Height", with: @evaluation.height

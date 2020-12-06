@@ -64,12 +64,15 @@ class Admin::Users::WorkoutsController < Admin::Users::ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_workouts
+      add_breadcrumb @user.full_name, admin_user_path(@user)
       @workouts = @user.workouts
+      add_breadcrumb "Rutinas", admin_user_workouts_path(@user)
+      
     end
 
     def set_workout
       @workout = @workouts.find_by(id: params[:id])
-      redirect_to admin_user_workouts_path if @workout.nil?
+      redirect_to admin_user_workouts_path(@user) if @workout.nil?
     end
 
     # Only allow a list of trusted parameters through.

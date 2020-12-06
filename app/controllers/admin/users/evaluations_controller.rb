@@ -31,8 +31,8 @@ class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
     @evaluation.creator = current_user
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to [:admin, @user, @evaluation], notice: 'Evaluation was successfully created.' }
-        format.json { render :show, status: :created, location: [:admin, @user, @evaluation] }
+        format.html { redirect_to admin_user_evaluations_path(@user), notice: 'Evaluation was successfully created.' }
+        format.json { render :index, status: :created, location: admin_user_evaluations_path(@user) }
       else
         format.html { render :new }
         format.json { render json: @evaluation.errors, status: :unprocessable_entity }
@@ -45,8 +45,8 @@ class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
   def update
     respond_to do |format|
       if @evaluation.update(evaluation_params)
-        format.html { redirect_to [:admin, @user, @evaluation], notice: 'Evaluation was successfully updated.' }
-        format.json { render :show, status: :ok, location: [:admin, @user, @evaluation] }
+        format.html { redirect_to admin_user_evaluations_path(@user), notice: 'Evaluation was successfully updated.' }
+        format.json { render :show, status: :ok, location: admin_user_evaluations_path(@user) }
       else
         format.html { render :edit }
         format.json { render json: @evaluation.errors, status: :unprocessable_entity }
@@ -79,6 +79,6 @@ class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def evaluation_params
-      params.require(:evaluation).permit(:height, :weight, :imc, :fat_rate, :fat_weight, :slim_weight, :residual_weight, :muscle_weight, :triceps_skinfold, :subscapular_skinfold, :bicipital_skinfold, :axilliary_skinfold, :suprailiac_skinfold, :thoracic_skinfold, :abdominal_skinfold, :medialcalf_skinfold, :fist_bone_diametre, :femur_bone_diametre, :evaluation_date, :user_id)
+      params.require(:evaluation).permit(:height, :weight, :imc, :fat_rate, :slim_weight, :residual_weight, :muscle_weight, :triceps_skinfold, :subscapular_skinfold, :bicipital_skinfold, :axilliary_skinfold, :suprailiac_skinfold, :thoracic_skinfold, :abdominal_skinfold, :medialcalf_skinfold, :fist_bone_diametre, :femur_bone_diametre, :evaluation_date, :user_id)
     end
 end

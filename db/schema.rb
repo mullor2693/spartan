@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 2020_11_26_214412) do
     t.decimal "weight"
     t.decimal "imc"
     t.decimal "fat_rate"
-    t.decimal "fat_weight"
     t.decimal "slim_weight"
     t.decimal "residual_weight"
     t.decimal "muscle_weight"

@@ -2440,10 +2440,15 @@ select.uk-form-width-xsmall{
 }
 @media (min-width:960px){
     .uk-offcanvas-bar{
-    left:-350px;
-    width:350px;
-    padding:40px 40px
-}
+        left:-350px;
+        width:350px;
+        padding:35px 30px;
+    }
+    .uk-offcanvas-close {
+        top: 40px !important;
+        right: 30px !important;
+    }
+    
 
 }
 .uk-offcanvas-flip .uk-offcanvas-bar{
@@ -2501,8 +2506,8 @@ select.uk-form-width-xsmall{
 .uk-offcanvas-close{
     position:absolute;
     z-index:1000;
-    top:20px;
-    right:20px;
+    top:25px;
+    right:15px;
     padding:5px
 }
 .uk-offcanvas-overlay{
@@ -7001,6 +7006,17 @@ body{
     border: 4px solid #76767612;
     max-width: 350px;
     min-width: 275px;
+    img {
+        background-color: #ececec69;
+        background: linear-gradient(0deg, #dadadaa1, #ffffff);
+        border: 4px solid #b50000db;
+        background-image: image-url('app/logo2.png'); 
+        background-repeat: no-repeat;    
+        background-size: 192px 192px;
+    }
+}
+
+.uk-modal-header {
     img {
         background-color: #ececec69;
         background: linear-gradient(0deg, #dadadaa1, #ffffff);

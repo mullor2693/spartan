@@ -1,14 +1,14 @@
-<div class="uk-position-relative uk-margin-medium uk-padding-small">
+
   <div class="uk-algin-center" uk-grid>
       <div class="uk-grid-match uk-width-1-2@s uk-width-1-3@l uk-width-1-4@xl uk-grid-match">
-          <div class="uk-card <%= @user.is_admin? ? "uk-card-secondary" : "uk-card-default" %> uk-card-body user-profile-card uk-align-center">
-            <div class="uk-card-header uk-padding-remove-horizontal">
+          
               <a class='ajaxNew' data-link='<%= url_for edit_admin_user_path(@user) %>'>
                 <%= image_tag(@user.avatar.attached? ? @user.avatar_sized(:thumb) : "users/avatar.png", class: "uk-border-circle uk-align-center square-200") %>
               </a>
-              <h3><%= @user.full_name %></h3>
+              
             </div>
             <div class="uk-card-body uk-padding-remove-horizontal">
+              <!--<h3><%= @user.full_name %></h3>-->
               <p>
                 <strong>Correo:</strong>
                 <%= @user.email %>
@@ -30,11 +30,10 @@
                 <%= @user.phone %>
               </p>
             </div>
-          </div>
-      </div>
+
       <div class="uk-grid-match uk-width-1-2@s uk-width-2-3@l uk-width-3-4@xl" uk-grid>
         <% [ 
-          ['Dietas', admin_user_diets_path(@user)],
+          # ['Dietas', admin_user_diets_path(@user)],
           ['Evaluaciones', admin_user_evaluations_path(@user)],
           ['Medidas', admin_user_measurements_path(@user)],
           ['Pesos', admin_user_weights_path(@user)],
@@ -48,4 +47,3 @@
         <% end %>
       </div>
   </div>
-</div>
