@@ -38,6 +38,7 @@ Rails.application.routes.draw do
           end
           resources :measurements
           resources :evaluations
+          get "evaluations_charts", to: "evaluations#charts", as: :evaluations_charts
           resources :weights
           resources :workouts do
             scope module: 'workouts' do

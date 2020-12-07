@@ -42,8 +42,7 @@ class Admin::FoodsController < Admin::ApplicationController
 
   # PATCH/PUT /foods/1
   # PATCH/PUT /foods/1.json
-  def update
-    debugger
+  def update    
     respond_to do |format|
       if @food.update(food_params)
         format.html { redirect_to [:admin, @food], notice: 'Food was successfully updated.' }

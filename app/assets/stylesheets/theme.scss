@@ -654,7 +654,8 @@ a.uk-link-reset,.uk-link-reset a{
     background-color:transparent;
     display:inline-block;
     fill:currentcolor;
-    line-height:0
+    line-height:0;
+    svg { font-size: large; }
 }
 button.uk-icon:not(:disabled){
     cursor:pointer

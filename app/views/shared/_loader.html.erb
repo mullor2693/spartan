@@ -4,13 +4,13 @@
 </div>
 
 <script>
-  // Spinner on AJAX
+  /* // Spinner on AJAX
   $(document).ajaxStart(function(){
     $("#loading").show();
   });
   // hide spinner on AJAX stop
   $(document).ajaxStop(function(){
-    $("#loading").delay(3000).hide();
+    // $("#loading").hide();
   });
 
   //Spinner on Turbolinks
@@ -19,7 +19,8 @@
   });
   $(document).on("turbolinks:load", function(){
     UIkit.offcanvas("#edition-canvas-container").hide();
-    $("#loading").hide();
+    //setTimeout($("#loading").hide(),2000);
   });
+  */
   
 </script>

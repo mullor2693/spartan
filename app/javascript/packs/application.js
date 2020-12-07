@@ -32,4 +32,4 @@ if (Rails.fire(document, "rails:attachBindings")) {
 // Import styles from js plugins
 import "../stylesheets/application"
 
-
+import "@fortawesome/fontawesome-free/js/all";

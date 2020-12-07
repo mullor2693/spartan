@@ -1,4 +1,8 @@
-<h1 class="uk-heading-divider uk-margin-small-left uk-margin-small-right"> Evaluaciones<%= remote_icon_link(new_admin_user_evaluation_path(@user), "plus", {:class=>"uk-align-right uk-margin-small-top"}) %></h1>
+<h1 class="uk-heading-divider uk-margin-small-left uk-margin-small-right"> 
+  Evaluaciones
+  <%= remote_fa_icon_link(new_admin_user_evaluation_path(@user), "far fa-plus-square", {:class=>"uk-align-right uk-margin-top uk-margin-left"}) %>
+  <%= remote_fa_icon_link(admin_user_evaluations_charts_path(@user), "far fa-chart-bar", {:class=>"uk-align-right uk-margin-top"}) %>
+</h1>
 
 <div class="uk-padding-small" uk-grid>
     <div class="uk-width-expand@s uk-width-1-2@m">
@@ -33,9 +37,6 @@
       <p>No existe ninguna evaluacion para este usuario.<p>
     <% end %>
     </div>
-    <div class="uk-width-expand@s uk-width-1-2@m">
-    <%= line_chart @user.get_evaluable_info( ["height", "weight", "imc", "fat_rate"]) %>
-    <%= line_chart @user.get_evaluable_info(["fat_weight", "slim_weight", "residual_weight", "muscle_weight"]) %>
-    <%= line_chart @user.get_evaluable_info(["triceps_skinfold", "subscapular_skinfold", "bicipital_skinfold", "axilliary_skinfold", "suprailiac_skinfold", "thoracic_skinfold", "abdominal_skinfold", "medialcalf_skinfold"]) %>
-    </div>
+    <!-- <div class="uk-width-expand@s uk-width-1-2@m">
+    </div> -->
 </div>

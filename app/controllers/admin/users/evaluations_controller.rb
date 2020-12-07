@@ -7,6 +7,9 @@ class Admin::Users::EvaluationsController < Admin::Users::ApplicationController
   def index
   end
 
+  def charts    
+  end
+
   # GET /evaluations/1
   # GET /evaluations/1.json
   def show

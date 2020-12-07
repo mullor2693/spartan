@@ -40,11 +40,12 @@ class User < ApplicationRecord
   end
 
   def get_evaluable_info(info=[])
+    uevs = self.evaluations.order(evaluation_date: :desc)
     info = Evaluation::EVALUABLE_ATTRIBUTES-(Evaluation::EVALUABLE_ATTRIBUTES-info)
     r_arr = []
     info.each do |ev|
       r_hash = {}
-      evaluations.order(evaluation_date: :desc).each do |uev|
+      uevs.each do |uev|
         r_hash[uev.evaluation_date.to_date] = uev[ev]
       end
       r_arr << {name: ev.humanize, data: r_hash}
@@ -52,6 +53,33 @@ class User < ApplicationRecord
     return r_arr
   end
 
+  def get_evaluable_info_with_future(info=[], n_reps=2)
+    uevs = self.evaluations.order(evaluation_date: :desc)
+    info = Evaluation::EVALUABLE_ATTRIBUTES-(Evaluation::EVALUABLE_ATTRIBUTES-info)
+    r_arr = []
+    info.each do |ev|
+      r_hash = {}
+      uevs.each do |uev|
+        r_hash[uev.evaluation_date.to_date] = uev[ev]
+      end
+      if uevs.count > 1
+        uev_last = uevs.first
+        uev_bf_last = uevs.second
+        date_diff = (uev_last.evaluation_date - uev_bf_last.evaluation_date)
+        value_diff = (uev_last[ev]||0) - (uev_bf_last[ev]||0)
+        future_value = uev_last[ev].present? ? uev_last[ev] + value_diff : nil
+        (1..n_reps).each do |step|
+          future_date = uev_last.evaluation_date + step*date_diff
+          future_value = future_value.present? ? future_value + value_diff : nil
+          r_hash[future_date.to_date] = future_value
+        end
+      end
+      r_arr << {name: ev.humanize, data: (r_hash.empty? ? {Date.today.to_date=>nil} : r_hash) }
+    end
+    return r_arr
+  end
+
+ 
   # Object Methods
   def avatar_sized(size)
       avatar.variant(Imageable.sizes[size]).processed

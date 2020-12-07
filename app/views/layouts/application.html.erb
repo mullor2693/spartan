@@ -52,6 +52,19 @@
       error: function (data) { $("#loading").hide(); }
     });
   });
+  
+  $(document).ready(function() {
+    if (document.readyState !== 'loading') {
+       $("#loading").hide();
+    } 
+  });
+
+  document.onreadystatechange = function () {
+    var state = document.readyState
+    if (state == 'complete') {
+      $("#loading").hide();
+    }
+  }
 </script>
 
 <% unless flash.empty? %>

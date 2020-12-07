@@ -42,7 +42,6 @@ class WorkoutsController < ApplicationController
   # PATCH/PUT /workouts/1
   # PATCH/PUT /workouts/1.json
   def update
-    debugger
     respond_to do |format|
       if @workout.update(workout_params)
         format.html { redirect_to @workout, notice: 'Workout was successfully updated.' }
